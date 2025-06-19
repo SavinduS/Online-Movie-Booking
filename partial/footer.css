@@ -1,0 +1,72 @@
+.footer-savi {
+  background-color: #6a5acd;
+  color: white;
+  padding: 40px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container-savi {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.footer-section-savi h3,
+.footer-heading-savi {
+  color: #ffd700;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section-savi ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section-savi ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section-savi ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section-savi ul li a:hover {
+  color: #dcdcff;
+}
+
+.footer-social-savi a {
+  color: white;
+  font-size: 20px;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+
+.footer-social-savi a:hover {
+  color: #ffd700;
+}
+
+.footer-section-savi p {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-pay-savi i {
+  font-size: 28px;
+  margin-right: 15px;
+  color: white;
+}
+
+.footer-bottom-savi {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 14px;
+  color: #f3f3ff;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 30px;
+}

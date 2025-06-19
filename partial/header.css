@@ -1,0 +1,134 @@
+/* ===================== */
+/* Font + Layout         */
+/* ===================== */
+.body-savi {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  color: #4B0082;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===================== */
+/* Header and Navigation */
+/* ===================== */
+.header-savi {
+  background-color: #6a5acd;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container-savi {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Logo with Swan */
+.logo-savi {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+}
+
+.logo-savi i {
+  margin-right: 10px;
+  font-size: 24px;
+  color: white;
+}
+
+
+/* Center Navigation Links */
+.center-nav-savi a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.3s;
+}
+
+.center-nav-savi a:hover {
+  color: #fdfdfd;
+}
+
+.center-nav-savi a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.center-nav-savi a:hover::after {
+  width: 100%;
+}
+
+/* Highlight Active Page */
+.center-nav-savi a.active-savi {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* Right Side */
+.right-nav-savi a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Login Button */
+.login-btn-savi {
+  background-color: white;
+  color: #6a5acd;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+  margin-right: 10px;
+}
+
+.login-btn-savi:hover {
+  background-color: #dcdcff;
+  color: #4B0082;
+}
+
+/* Profile Icon */
+.profile-icon-savi {
+  font-size: 30px;
+  color: white;
+  margin-left: 5px;
+}
+
+/* ===================== */
+/* Responsive Design     */
+/* ===================== */
+@media (max-width: 768px) {
+  .nav-container-savi {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .center-nav-savi {
+    margin-top: 10px;
+  }
+
+  .center-nav-savi a {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .right-nav-savi {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
