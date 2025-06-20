@@ -1,0 +1,53 @@
+:root {
+  --wish-primary: #b793d2;
+  --wish-hover: #9a7bc0;
+  --wish-bg: #f9f9ff;
+  --wish-red: #e74c3c;
+}
+
+body#wish-body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--wish-bg);
+}
+
+#wish-wrapper {
+  padding: 40px;
+}
+
+#wish-header {
+  margin-bottom: 30px;
+}
+
+#wish-header h1 {
+  color: var(--wish-primary);
+  font-size: 28px;
+}
+
+/* Table */
+#wish-user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#wish-user-table th,
+#wish-user-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.wish-delete {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--wish-red);
+}
+
+.wish-delete:hover {
+  color: red;
+}

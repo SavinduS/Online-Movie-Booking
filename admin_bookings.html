@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Bookings</title>
+  <link rel="stylesheet" href="../css/wish_css_bookings.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body id="wish-body">
+
+  <div id="wish-wrapper">
+    
+    <!-- Header -->
+    <header id="wish-header">
+      <h1><i class="fas fa-ticket-alt"></i> All Bookings</h1>
+    </header>
+
+    <!-- Booking Table -->
+    <section id="wish-booking-section">
+      <table id="wish-booking-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Movie</th>
+            <th>Showtime</th>
+            <th>Seats</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample Booking Row -->
+          <tr>
+            <td>John Doe</td>
+            <td>Joker</td>
+            <td>2025-06-22 6:00 PM</td>
+            <td>A1, A2</td>
+            <td>$20.00</td>
+            <td><span class="wish-status paid">Paid</span></td>
+            <td>
+              <button class="wish-delete"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+</body>
+</html>

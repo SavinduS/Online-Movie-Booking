@@ -1,0 +1,133 @@
+:root {
+  --wish-primary: #b793d2;
+  --wish-hover: #9a7bc0;
+  --wish-bg: #f9f9ff;
+}
+
+body#wish-body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--wish-bg);
+}
+
+#wish-wrapper {
+  padding: 40px;
+}
+
+#wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#wish-header h1 {
+  color: var(--wish-primary);
+  font-size: 28px;
+}
+
+#wish-add-btn {
+  background-color: var(--wish-primary);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#wish-add-btn:hover {
+  background-color: var(--wish-hover);
+}
+
+#wish-movie-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#wish-movie-table th,
+#wish-movie-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.wish-edit,
+.wish-delete {
+  background: none;
+  border: none;
+  font-size: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  color: var(--wish-primary);
+}
+
+.wish-edit:hover {
+  color: green;
+}
+
+.wish-delete:hover {
+  color: red;
+}
+
+/* Popup Form */
+#wish-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.wish-form-box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.wish-form-box h2 {
+  margin-top: 0;
+  color: var(--wish-primary);
+}
+
+.wish-form-box label {
+  display: block;
+  margin-top: 12px;
+}
+
+.wish-form-box input,
+.wish-form-box select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.wish-btns {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wish-btns button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: var(--wish-primary);
+  cursor: pointer;
+}
+
+.wish-btns button:hover {
+  background-color: var(--wish-hover);
+}

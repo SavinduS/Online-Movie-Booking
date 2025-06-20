@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Movies</title>
+  <link rel="stylesheet" href="../css/wish_css_movies.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body id="wish-body">
+
+  <div id="wish-wrapper">
+
+    
+    <!-- Header -->
+    <header id="wish-header">
+      <h1><i class="fas fa-film"></i> Manage Movies</h1>
+      <button id="wish-add-btn" onclick="document.getElementById('wish-form').style.display='block'">Add New Movie</button>
+    </header>
+
+    <!-- Movie Table -->
+    <section id="wish-movie-section">
+      <table id="wish-movie-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample Row -->
+          <tr>
+            <td>Joker</td>
+            <td>2D</td>
+            <td>$10.00</td>
+            <td>2025-06-23 6:30 PM</td>
+            <td>
+              <button class="wish-edit"><i class="fas fa-edit"></i></button>
+              <button class="wish-delete"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Add Movie Form (Popup) -->
+    <div id="wish-form">
+      <div class="wish-form-box">
+        <h2>Add Movie</h2>
+        <form action="add_movie.php" method="post">
+          <label>Title:</label>
+          <input type="text" name="title" required>
+
+          <label>Type:</label>
+          <select name="type" required>
+            <option value="2D">2D</option>
+            <option value="3D">3D</option>
+            <option value="IMAX">IMAX</option>
+          </select>
+
+          <label>Price ($):</label>
+          <input type="number" name="price" step="0.01" required>
+
+          <label>Showtime:</label>
+          <input type="datetime-local" name="show_time" required>
+
+          <div class="wish-btns">
+            <button type="submit">Save</button>
+            <button type="button" onclick="document.getElementById('wish-form').style.display='none'">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
