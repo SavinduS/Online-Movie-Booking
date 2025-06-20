@@ -1,5 +1,5 @@
 .footer-savi {
-  background-color: #6a5acd;
+  background-color: #000000;
   color: white;
   padding: 40px 20px 20px;
   font-family: 'Poppins', sans-serif;
@@ -15,7 +15,7 @@
 
 .footer-section-savi h3,
 .footer-heading-savi {
-  color: #ffd700;
+  color: #9142ec;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 15px;
@@ -48,7 +48,7 @@
 }
 
 .footer-social-savi a:hover {
-  color: #ffd700;
+  color: #a371f3;
 }
 
 .footer-section-savi p {

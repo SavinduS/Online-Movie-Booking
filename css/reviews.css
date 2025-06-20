@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+.review-section-savi {
+  padding: 60px 20px;
+  background-color: #f9f5ff;
+}
+
+.section-title-savi {
+  text-align: center;
+  color: #6a5acd;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.container-savi {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.reviews-wrapper-savi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.review-card-savi {
+  background-color: #fff;
+  border-left: 5px solid #6a5acd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.review-card-savi:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
+}
+
+.review-card-savi h3 {
+  margin-top: 0;
+  color: #4c1d95;
+}
+
+.rating-savi {
+  font-size: 1.2rem;
+  color: #ffbf00;
+}
+
+.comment-savi {
+  color: #444;
+  margin-top: 10px;
+}
+
+.form-wrapper-savi {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+.form-wrapper-savi h2 {
+  color: #6a5acd;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-wrapper-savi form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-wrapper-savi input,
+.form-wrapper-savi select,
+.form-wrapper-savi textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-wrapper-savi textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-wrapper-savi button {
+  background-color: #6a5acd;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-wrapper-savi button:hover {
+  background-color: #5b4bb7;
+}
