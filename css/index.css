@@ -1,14 +1,32 @@
+/* ========== Global Styles ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: white;
+  overflow-x: hidden;
+}
+
+.container-savi {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 /* ========== Hero Section ========== */
 .hero-savi {
   position: relative;
-  height: 60vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   color: white;
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
 }
 
 .hero-bg-savi {
@@ -17,218 +35,339 @@
   left: 0;
   width: 100%;
   height: 100%;
-  animation: slideshow-savi 20s infinite ease-in-out;
+  animation: slideshow-savi 25s infinite ease-in-out;
   background-size: cover;
   background-position: center;
-  z-index: 0;
-  filter: brightness(0.6);
+  z-index: 1;
+}
+
+.hero-overlay-savi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(106, 90, 205, 0.3) 0%,
+    rgba(59, 130, 246, 0.2) 50%,
+    rgba(147, 51, 234, 0.3) 100%
+  );
+  z-index: 2;
 }
 
 .hero-content-savi {
-  z-index: 1;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
   padding: 0 20px;
-  max-width: 700px;
 }
 
 .hero-title-savi {
-  font-size: 2.8rem;
+  font-size: 3.5rem;
+  font-weight: 700;
   margin-bottom: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+  animation: fadeInUp-savi 1s ease-out;
 }
 
 .hero-subtitle-savi {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  font-weight: 300;
+  animation: fadeInUp-savi 1s ease-out 0.2s both;
 }
 
-/* Search Bar */
+/* Enhanced Search Bar */
 .hero-search-savi {
+  margin-bottom: 50px;
+  animation: fadeInUp-savi 1s ease-out 0.4s both;
+}
+
+.search-wrapper-savi {
+  position: relative;
   display: flex;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 50px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(106, 90, 205, 0.3);
+  transition: all 0.3s ease;
+}
+
+.search-wrapper-savi:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px rgba(106, 90, 205, 0.4);
+}
+
+.search-icon-savi {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6a5acd;
+  font-size: 18px;
+  z-index: 1;
 }
 
 .hero-search-savi input {
   flex: 1;
   border: none;
-  padding: 12px 20px;
-  border-radius: 50px 0 0 50px;
+  padding: 18px 20px 18px 55px;
   font-size: 16px;
   outline: none;
+  background: transparent;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
 }
 
-.hero-search-savi button {
-  background: #6a5acd;
+.hero-search-savi input::placeholder {
+  color: #888;
+}
+
+.search-btn-savi {
+  background: linear-gradient(135deg, #6a5acd 0%, #8b5cf6 100%);
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 0 50px 50px 0;
+  padding: 18px 25px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  font-size: 16px;
 }
 
-.hero-search-savi button:hover {
-  background: #5a4dbb;
+.search-btn-savi:hover {
+  background: linear-gradient(135deg, #5a4dbb 0%, #7c3aed 100%);
+  transform: scale(1.05);
 }
 
-.hero-search-savi i {
+/* Hero Stats */
+.hero-stats-savi {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  animation: fadeInUp-savi 1s ease-out 0.6s both;
+}
+
+.stat-item-savi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.stat-item-savi:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-item-savi i {
+  color: #6a5acd;
   font-size: 18px;
 }
 
-/* Background Slideshow Animation */
-@keyframes slideshow-savi {
-  0% { background-image: url('../images/hero1.jpg'); }
-  25% { background-image: url('../images/hero2.jpg'); }
-  50% { background-image: url('../images/hero3.jpg'); }
-  75% { background-image: url('../images/hero4.jpeg'); }
-  100% { background-image: url('../images/hero5.jpeg')}
+.stat-item-savi span {
+  font-weight: 500;
+  font-size: 14px;
 }
 
-.section-savi {
-  padding: 60px 20px;
-  background-color: #0f0f1b;
-  color: white;
+/* Container */
+.container-savi {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Title & Arrows Row */
-.section-title-row-savi {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Category Filter Buttons */
+.category-section-savi {
+  background: #f6f3ff;
+  padding: 40px 0 20px;
+  text-align: center;
+}
+
+.filter-title-savi {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #4b0082;
   margin-bottom: 20px;
 }
 
-.section-title-savi {
-  font-size: 1.8rem;
-  color: #ffffff;
-  font-weight: bold;
-  text-align: left;
-  padding-left: 10px;
-}
-
-.section-title-savi i {
-  color: #ff4dff;
-  margin-right: 10px;
-}
-
-/* Arrow Buttons */
-.scroll-arrows-savi button {
-  background: #6a5acd;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 5px;
-  transition: background 0.3s;
-}
-
-.scroll-arrows-savi button:hover {
-  background: #5a4dbb;
-}
-
-/* Container Wrapper */
-.scroll-container-wrapper-savi {
-  position: relative;
-}
-
-/* Carousel */
-.scroll-container-savi {
-  display: flex;
-  gap: 30px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 10px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.scroll-container-savi::-webkit-scrollbar {
-  display: none;
-}
-
 .category-filters-savi {
-  text-align: center;
-  margin: 30px 0 10px;
+  display: flex;
   flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
 }
 
 .filter-btn-savi {
-  background-color: #3f3583;
-  color: white;
-  border: none;
+  background: white;
+  border: 2px solid #6a5acd;
   padding: 10px 18px;
-  margin: 5px;
-  border-radius: 20px;
+  border-radius: 30px;
+  color: #6a5acd;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
-.filter-btn-savi:hover {
-  background-color: #7f66f3;
-}
-
+.filter-btn-savi:hover,
 .filter-btn-savi.active {
-  background-color: #001d6b;
-  color: #fff;
+  background: #6a5acd;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Section Blocks */
+.section-savi {
+  padding: 60px 0;
+  background: linear-gradient(to bottom, #f9f5ff 0%, #ffffff 100%);
+}
+
+.section-header-savi {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title-savi {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4b0082;
+}
+
+.section-subtitle-savi {
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Scrollable Container */
+.scroll-container-wrapper-savi {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.scroll-container-savi {
+  display: flex;
+  gap: 20px;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  padding: 10px;
 }
 
 /* Movie Cards */
 .movie-card-savi {
-  flex: 0 0 calc(25% - 20px);
-  background: linear-gradient(145deg, #1c1c2b, #1a1a28);
-  border-radius: 12px;
+  flex: 0 0 auto;
+  width: 220px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(106, 90, 205, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  scroll-snap-align: start;
+  position: relative;
 }
 
 .movie-card-savi:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #9f7bff, 0 0 25px #6a5acd;
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(106,90,205,0.3);
 }
 
-.movie-card-savi img {
+/* Movie Poster */
+.movie-poster-savi {
+  position: relative;
+}
+
+.movie-poster-savi img {
   width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  height: auto;
+  display: block;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Overlay Buttons */
+.movie-overlay-savi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.movie-card-savi:hover .movie-overlay-savi {
+  opacity: 1;
+}
+
+.play-btn-savi,
+.info-btn-savi {
+  background: white;
+  color: #6a5acd;
+  border: none;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Movie Info */
+.movie-info-savi {
+  padding: 15px;
+  text-align: center;
 }
 
 .movie-title-savi {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 10px 0 0;
-  color: #ffffff;
-  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
 }
 
 .movie-category-savi {
-  font-size: 14px;
-  color: #bbbbff;
-  text-align: center;
-  padding-bottom: 15px;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 4px;
 }
 
-/* Responsive card sizing */
-@media (max-width: 1024px) {
-  .movie-card-savi {
-    flex: 0 0 calc(33.33% - 20px);
-  }
+.movie-rating-savi,
+.release-date-savi {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #6a5acd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
-@media (max-width: 768px) {
-  .movie-card-savi {
-    flex: 0 0 calc(50% - 20px);
-  }
-}
-@media (max-width: 480px) {
-  .movie-card-savi {
-    flex: 0 0 100%;
-  }
+
+/* Coming Soon Badge */
+.coming-soon-badge-savi {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #6a5acd;
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }

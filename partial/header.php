@@ -1,1 +1,45 @@
+<!-- partial/header.php -->
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images\favicon.png">
+
+  
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="partial\header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="body-savi">
+
+<!-- Main Header -->
+<header class="header-savi">
+  <div class="nav-container-savi">
+
+    <!-- Left Logo (Swan + Text) -->
+    <div class="logo-savi">
+  <i class="fa-solid fa-video"></i> Swans Cinema
+</div>
+
+    <!-- Center Navigation -->
+    <nav class="center-nav-savi">
+      <a href="index.php" class="active-savi">Home</a>
+      <a href="NowShowing" >Now Showing</a>
+      <a href="reviews.php" >Reviews</a>
+      <a href="aboutus.php" >About Us</a>
+    </nav>
+
+    <!-- Right Section (Login + Profile) -->
+    <div class="right-nav-savi">
+      <a href="#" class="login-btn-savi">Login</a>
+      <a href="#"><i class="fas fa-circle-user profile-icon-savi"></i></a>
+    </div>
+
+  </div>
+</header>
 
