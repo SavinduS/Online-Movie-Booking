@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Swans Cinema</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body id="wish-body">
+
+  <div id="wish-container">
+    
+    <!-- Sidebar -->
+    <aside id="wish-sidebar">
+      <div id="wish-brand">🍿 Swans Cinema</div>
+      <nav>
+        <a href="admin_dashboard.php" class="active"><i class="fas fa-home"></i> Overview</a>
+        <a href="admin_bookings.php"><i class="fas fa-ticket-alt"></i> Bookings</a>
+        <a href="admin_movies.php"><i class="fas fa-film"></i> Movies</a>
+        <a href="admin_users.php"><i class="fas fa-users"></i> Users</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main id="wish-main">
+      <!-- Top bar -->
+      <div id="wish-topbar">
+        <h1>Overview</h1>
+        <div class="wish-searchbar">
+          <input type="text" placeholder="Search..." />
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <section id="wish-cards">
+        <div class="wish-card">
+          <div class="wish-card-icon"><i class="fas fa-ticket-alt"></i></div>
+          <div class="wish-card-text">
+            <h2>8,432</h2>
+            <p>Total Bookings</p>
+            <span class="wish-up">↑ 12% from last month</span>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-card-icon"><i class="fas fa-dollar-sign"></i></div>
+          <div class="wish-card-text">
+            <h2>$168,640</h2>
+            <p>Total Revenue</p>
+            <span class="wish-up">↑ 8% from last month</span>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-card-icon"><i class="fas fa-user"></i></div>
+          <div class="wish-card-text">
+            <h2>2,341</h2>
+            <p>Active Users</p>
+            <span class="wish-down">↓ 3% from last month</span>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-card-icon"><i class="fas fa-film"></i></div>
+          <div class="wish-card-text">
+            <h2>156</h2>
+            <p>Total Movies</p>
+            <span class="wish-up">↑ 5% from last month</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts -->
+      <section id="wish-charts">
+        <div class="wish-chart-box">Booking Trends</div>
+        <div class="wish-chart-box">Revenue by Month</div>
+      </section>
+
+      <!-- Recent Bookings -->
+      <section id="wish-recent">
+        <div class="wish-recent-header">
+          <h2>Recent Bookings</h2>
+          <button class="wish-btn">View All</button>
+        </div>
+        <table class="wish-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Movie</th>
+              <th>Showtime</th>
+              <th>Seats</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td>Joker</td>
+              <td>2025-06-22 6:00 PM</td>
+              <td>A3, A4</td>
+              <td>$22.00</td>
+              <td><span class="wish-status paid">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>

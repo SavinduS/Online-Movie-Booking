@@ -1,53 +1,890 @@
-:root {
-  --wish-primary: #b793d2;
-  --wish-hover: #9a7bc0;
-  --wish-bg: #f9f9ff;
-  --wish-red: #e74c3c;
-}
-
-body#wish-body {
+/* Reset and Base Styles */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#wish-body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--wish-bg);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+  line-height: 1.6;
 }
 
+/* Main Wrapper */
 #wish-wrapper {
-  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
 }
 
+/* Header Styles */
 #wish-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
   margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #wish-header h1 {
-  color: var(--wish-primary);
-  font-size: 28px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 0;
 }
 
-/* Table */
+#wish-header h1 i {
+  color: #667eea;
+  font-size: 2.2rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* User Section */
+#wish-user-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow-x: auto;
+}
+
+/* Table Styles */
 #wish-user-table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  min-width: 700px;
 }
 
-#wish-user-table th,
-#wish-user-table td {
-  padding: 14px;
+#wish-user-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+}
+
+#wish-user-table thead::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+}
+
+#wish-user-table thead th {
+  padding: 20px 15px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
 }
 
-.wish-delete {
-  background: none;
-  border: none;
+#wish-user-table thead th:first-child {
+  border-radius: 12px 0 0 0;
+  text-align: center;
+}
+
+#wish-user-table thead th:last-child {
+  border-radius: 0 12px 0 0;
+  text-align: center;
+}
+
+#wish-user-table thead th:nth-child(4) {
+  text-align: center;
+}
+
+/* Table Body Styles */
+#wish-user-table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.98);
+  position: relative;
+}
+
+#wish-user-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(5px);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+  border-left: 4px solid rgba(255, 255, 255, 0.8);
+}
+
+#wish-user-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+#wish-user-table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 12px;
+}
+
+#wish-user-table tbody tr:last-child td:last-child {
+  border-radius: 0 0 12px 0;
+}
+
+#wish-user-table tbody td {
+  padding: 18px 15px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  vertical-align: middle;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* User ID Column */
+#wish-user-table tbody td:first-child {
+  text-align: center;
+  font-weight: 600;
+  color: #667eea;
+}
+
+#wish-user-table tbody td:first-child::before {
+  content: '#';
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Name Column */
+#wish-user-table tbody td:nth-child(2) {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Email Column */
+#wish-user-table tbody td:nth-child(3) {
+  color: #718096;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* Date Column */
+#wish-user-table tbody td:nth-child(4) {
+  text-align: center;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Action Column */
+#wish-user-table tbody td:last-child {
+  text-align: center;
+  padding: 18px 20px;
+}
+
+/* Action Button Styles */
+#wish-user-table tbody td a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: rgba(220, 38, 38, 0.1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+#wish-user-table tbody td a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+#wish-user-table tbody td a:hover::before {
+  left: 100%;
+}
+
+#wish-user-table tbody td a:hover {
+  background: rgba(220, 38, 38, 0.2);
+  transform: scale(1.15) rotate(5deg);
+  border-color: rgba(220, 38, 38, 0.4);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+#wish-user-table tbody td a:active {
+  transform: scale(0.9);
+}
+
+#wish-user-table tbody td a i {
+  font-size: 1.1rem;
+  color: #dc2626;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+#wish-user-table tbody td a:hover i {
+  color: #dc2626 !important;
+  transform: scale(1.1);
+}
+
+/* Empty State Styles */
+#wish-user-table tbody tr td[colspan="5"] {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 1.2rem;
+  color: #718096;
+  font-style: italic;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  position: relative;
+}
+
+#wish-user-table tbody tr td[colspan="5"]::before {
+  content: '👥';
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+/* Hover Effects for Table Rows */
+#wish-user-table tbody tr:hover td:first-child {
+  color: #667eea;
+}
+
+#wish-user-table tbody tr:hover td:first-child::before {
+  color: rgba(102, 126, 234, 0.8);
+}
+
+/* Container */
+#wish-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+#wish-sidebar {
+  width: 280px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#wish-brand {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
+}
+
+#wish-sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+#wish-sidebar nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 15px 25px;
+  margin: 2px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+#wish-sidebar nav a i {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+}
+
+#wish-sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateX(5px);
+}
+
+#wish-sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content */
+#wish-main {
+  flex: 1;
+  margin-left: 280px;
+  padding: 30px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Top Bar */
+#wish-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+#wish-topbar h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.wish-searchbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wish-searchbar input {
+  padding: 12px 45px 12px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 25px;
+  font-size: 14px;
+  width: 300px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+}
+
+.wish-searchbar input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: white;
+}
+
+.wish-searchbar i {
+  position: absolute;
+  right: 18px;
+  color: #a0aec0;
   font-size: 16px;
-  cursor: pointer;
-  color: var(--wish-red);
 }
 
-.wish-delete:hover {
-  color: red;
+/* Cards Section */
+#wish-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.wish-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border: 1px solid #f1f5f9;
+}
+
+.wish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1);
+}
+
+.wish-card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 28px;
+  color: white;
+}
+
+.wish-card:nth-child(1) .wish-card-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.wish-card:nth-child(2) .wish-card-icon {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.wish-card:nth-child(3) .wish-card-icon {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.wish-card:nth-child(4) .wish-card-icon {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.wish-card-text h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 5px;
+}
+
+.wish-card-text p {
+  color: #718096;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.wish-up {
+  color: #48bb78;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.wish-down {
+  color: #f56565;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Charts Section */
+#wish-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.wish-chart-box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.wish-chart-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Recent Bookings Section */
+#wish-recent {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+}
+
+.wish-recent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 30px 0 30px;
+  margin-bottom: 20px;
+}
+
+.wish-recent-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.wish-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.wish-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Table Styles */
+.wish-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.wish-table thead th {
+  background: #f8fafc;
+  padding: 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.wish-table tbody td {
+  padding: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #2d3748;
+  font-size: 15px;
+}
+
+.wish-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.wish-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status Styles */
+.wish-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wish-status.paid {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.wish-status.pending {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.wish-status.cancelled {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+/* Responsive Design for Dashboard */
+@media (max-width: 1024px) {
+  #wish-sidebar {
+    width: 250px;
+  }
+  
+  #wish-main {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
+  #wish-charts {
+    grid-template-columns: 1fr;
+  }
+  
+  .wish-searchbar input {
+    width: 250px;
+  }
+  
+  /* User Table Responsive */
+  #wish-wrapper {
+    padding: 15px;
+  }
+  
+  #wish-user-section {
+    padding: 20px;
+  }
+  
+  #wish-user-table {
+    font-size: 0.9rem;
+  }
+  
+  #wish-user-table thead th,
+  #wish-user-table tbody td {
+    padding: 15px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  #wish-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  #wish-main {
+    margin-left: 0;
+    padding: 15px;
+  }
+  
+  #wish-topbar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  #wish-topbar h1 {
+    font-size: 24px;
+  }
+  
+  .wish-searchbar input {
+    width: 100%;
+  }
+  
+  #wish-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .wish-card {
+    padding: 20px;
+  }
+  
+  .wish-card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .wish-card-text h2 {
+    font-size: 24px;
+  }
+  
+  .wish-recent-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .wish-table {
+    font-size: 12px;
+  }
+  
+  .wish-table thead th,
+  .wish-table tbody td {
+    padding: 12px 8px;
+  }
+  
+  /* User Table Mobile Styles */
+  #wish-header {
+    padding: 20px;
+  }
+  
+  #wish-header h1 {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #wish-user-section {
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  #wish-user-table {
+    font-size: 0.85rem;
+    min-width: 600px;
+  }
+  
+  #wish-user-table thead th,
+  #wish-user-table tbody td {
+    padding: 12px 10px;
+  }
+  
+  #wish-user-table thead th {
+    font-size: 0.9rem;
+  }
+  
+  #wish-user-table tbody td a {
+    width: 35px;
+    height: 35px;
+  }
+  
+  #wish-user-table tbody td a i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #wish-main {
+    padding: 10px;
+  }
+  
+  .wish-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .wish-card-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .wish-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* User Table Small Mobile Styles */
+  #wish-wrapper {
+    padding: 10px;
+  }
+  
+  #wish-header {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  #wish-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  #wish-user-section {
+    padding: 10px;
+  }
+  
+  #wish-user-table {
+    font-size: 0.8rem;
+    min-width: 550px;
+  }
+  
+  #wish-user-table thead th,
+  #wish-user-table tbody td {
+    padding: 10px 8px;
+  }
+  
+  #wish-user-table tbody td a {
+    width: 32px;
+    height: 32px;
+  }
+  
+  #wish-user-table tbody td a i {
+    font-size: 0.9rem;
+  }
+}
+
+/* Scroll Hint for Mobile */
+@media (max-width: 700px) {
+  #wish-user-section::after {
+    content: "← Scroll horizontally to view all columns →";
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 10px;
+    font-style: italic;
+  }
+}
+
+/* Tooltip for Action Button */
+#wish-user-table tbody td a:hover::after {
+  content: 'Delete User';
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d3748;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-5px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Focus States for Accessibility */
+#wish-user-table tbody td a:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Selection Styles */
+#wish-user-table tbody tr::selection,
+#wish-user-table tbody td::selection {
+  background: rgba(102, 126, 234, 0.2);
+}
+
+/* Loading Animation */
+.wish-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  border-top-color: #667eea;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+#wish-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#wish-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#wish-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+#wish-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }

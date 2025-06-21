@@ -1,178 +1,479 @@
-:root {
-  --wish-primary: #b793d2;
-  --wish-hover: #9a7bc0;
-  --wish-bg: #f9f9ff;
-  --wish-green: #28a745;
-  --wish-red: #dc3545;
-}
-
-body#wish-body {
+/* Reset and Base Styles */
+* {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--wish-bg);
+  padding: 0;
+  box-sizing: border-box;
 }
 
+#wish-body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container */
 #wish-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-/* Sidebar */
+/* Sidebar Styles */
 #wish-sidebar {
-  width: 240px;
-  background-color: var(--wish-primary);
-  padding: 20px;
+  width: 280px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 20px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 #wish-brand {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
+}
+
+#wish-sidebar nav {
+  display: flex;
+  flex-direction: column;
 }
 
 #wish-sidebar nav a {
-  display: block;
-  margin: 15px 0;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  font-size: 15px;
-  padding: 8px;
-  border-radius: 5px;
-  transition: 0.3s;
+  padding: 15px 25px;
+  margin: 2px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
 }
 
-#wish-sidebar nav a:hover,
+#wish-sidebar nav a i {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+}
+
+#wish-sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateX(5px);
+}
+
 #wish-sidebar nav a.active {
-  background-color: var(--wish-hover);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Topbar */
+/* Main Content */
 #wish-main {
   flex: 1;
+  margin-left: 280px;
   padding: 30px;
-  overflow-y: auto;
+  background-color: #f5f7fa;
+  min-height: 100vh;
 }
 
+/* Top Bar */
 #wish-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+#wish-topbar h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
 }
 
 .wish-searchbar {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .wish-searchbar input {
-  padding: 8px 32px 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  padding: 12px 45px 12px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 25px;
+  font-size: 14px;
+  width: 300px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+}
+
+.wish-searchbar input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: white;
 }
 
 .wish-searchbar i {
   position: absolute;
-  right: 10px;
-  top: 9px;
-  color: gray;
+  right: 18px;
+  color: #a0aec0;
+  font-size: 16px;
 }
 
-/* Dashboard Cards */
+/* Cards Section */
 #wish-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
 }
 
 .wish-card {
-  background: #fff;
-  border-radius: 10px;
-  flex: 1;
-  min-width: 220px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
   display: flex;
-  padding: 20px;
   align-items: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #f1f5f9;
+}
+
+.wish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1);
 }
 
 .wish-card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
   font-size: 28px;
-  margin-right: 15px;
-  color: var(--wish-primary);
+  color: white;
+}
+
+.wish-card:nth-child(1) .wish-card-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.wish-card:nth-child(2) .wish-card-icon {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.wish-card:nth-child(3) .wish-card-icon {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.wish-card:nth-child(4) .wish-card-icon {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
 }
 
 .wish-card-text h2 {
-  margin: 0;
-  font-size: 22px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 5px;
+}
+
+.wish-card-text p {
+  color: #718096;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .wish-up {
-  color: var(--wish-green);
-  font-size: 13px;
+  color: #48bb78;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .wish-down {
-  color: var(--wish-red);
-  font-size: 13px;
+  color: #f56565;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Charts Section */
 #wish-charts {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
   margin-bottom: 40px;
 }
 
 .wish-chart-box {
-  flex: 1;
   background: white;
   padding: 30px;
-  border-radius: 10px;
-  height: 240px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
 }
 
-/* Recent Bookings */
+.wish-chart-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Recent Bookings Section */
 #wish-recent {
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
 }
 
 .wish-recent-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 30px 30px 0 30px;
+  margin-bottom: 20px;
+}
+
+.wish-recent-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2d3748;
 }
 
 .wish-btn {
-  background-color: var(--wish-primary);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 6px 16px;
-  border-radius: 6px;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
 
+.wish-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Table Styles */
 .wish-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
-.wish-table th,
-.wish-table td {
-  padding: 12px;
+.wish-table thead th {
+  background: #f8fafc;
+  padding: 20px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.wish-table tbody td {
+  padding: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #2d3748;
+  font-size: 15px;
+}
+
+.wish-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.wish-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status Styles */
+.wish-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .wish-status.paid {
-  color: white;
-  background-color: var(--wish-primary);
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.wish-status.pending {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.wish-status.cancelled {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  #wish-sidebar {
+    width: 250px;
+  }
+  
+  #wish-main {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
+  #wish-charts {
+    grid-template-columns: 1fr;
+  }
+  
+  .wish-searchbar input {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  #wish-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  #wish-main {
+    margin-left: 0;
+    padding: 15px;
+  }
+  
+  #wish-topbar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  #wish-topbar h1 {
+    font-size: 24px;
+  }
+  
+  .wish-searchbar input {
+    width: 100%;
+  }
+  
+  #wish-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .wish-card {
+    padding: 20px;
+  }
+  
+  .wish-card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .wish-card-text h2 {
+    font-size: 24px;
+  }
+  
+  .wish-recent-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .wish-table {
+    font-size: 12px;
+  }
+  
+  .wish-table thead th,
+  .wish-table tbody td {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #wish-main {
+    padding: 10px;
+  }
+  
+  .wish-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .wish-card-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .wish-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Loading Animation */
+.wish-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  border-top-color: #667eea;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+#wish-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#wish-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#wish-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+#wish-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
