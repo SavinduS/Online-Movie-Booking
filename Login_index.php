@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="-sup-register-link">
             <span class="-sup-register-text">Don't have an account?</span>
-            <a href="register.php" class="-sup-register-link-btn">Create Account</a>
+            <a href="CreateAccount.php" class="-sup-register-link-btn">Create Account</a>
         </div>
     </div>
 
