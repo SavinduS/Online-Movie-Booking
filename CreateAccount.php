@@ -35,8 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if ($password !== $confirmPassword) {
-        $errors[] = "Passwords do not match";
+        $errors[] = "Passwords do not match";    
     }
+    
+
+    //Data insert Part
     
     // If no errors, process registration (you would typically save to database here)
     if (empty($errors)) {
@@ -55,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
-    $connection->close();
+    $connection->close(); 
 }
 
     
