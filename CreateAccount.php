@@ -1,7 +1,8 @@
 <?php
+
 session_start();
 include  'database/db.php';
-
+ 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstName = trim($_POST['firstName'] ?? '');

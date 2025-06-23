@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database/db.php';
+include("partial/header.php");
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -511,3 +512,5 @@ $stmt->close();
     </script>
 </body>
 </html>
+
+<?php include("partial/footer.php"); ?>
