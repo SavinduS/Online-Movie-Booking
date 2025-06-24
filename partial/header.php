@@ -47,15 +47,19 @@
         }
 
         /* Logo Styles */
-        .logo-savi {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #6b46c1;
-            font-weight: 700;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+       .logo-savi i {
+        margin-right: 8px; /* Reduce this if it's too wide */
+        vertical-align: middle;
         }
+
+        .logo-savi {
+        display: flex;
+        align-items: center;
+        font-size: 28px;
+        font-weight: 800;
+        color: #6b46c1; /* lavender-purple */
+        }
+
 
         .logo-savi:hover {
             transform: translateY(-2px);
@@ -324,7 +328,7 @@
 
         <!-- Logo -->
         <div class="logo-savi">
-            <i class="fas fa-film"></i>    Swans Cinema
+            <i class="fa-solid fa-video"></i> Swans Cinema</span>
         </div>
 
         <!-- Navigation Links -->
@@ -335,7 +339,7 @@
                 </a>
             </li>
             <li class="nav-item-savi">
-                <a href="now-showing.php" class="nav-link-savi <?php if ($current_page == 'now-showing.php') echo 'active-savi'; ?>">
+                <a href="now_showing.php" class="nav-link-savi <?php if ($current_page == 'now_showing.php') echo 'active-savi'; ?>">
                     <i class="fas fa-video"></i> Now Showing
                 </a>
             </li>
@@ -345,19 +349,19 @@
                 </a>
             </li>
             <li class="nav-item-savi">
-                <a href="about.php" class="nav-link-savi <?php if ($current_page == 'about.php') echo 'active-savi'; ?>">
+                <a href="aboutus.php" class="nav-link-savi <?php if ($current_page == 'aboutus.php') echo 'active-savi'; ?>">
                     <i class="fas fa-info-circle"></i> About Us
                 </a>
             </li>
         </ul>
 
         <!-- Login Button -->
-        <div class="login-section-savi">
-            <a href="Login_index.php" class="login-btn-savi">
-                <i class="fas fa-user"></i> Login
-            </a>
-        </div>
-    </div>
+       <div class="login-btn-container-savi">
+        <a href="login_index.php" class="login-btn-savi">
+        <i class="fas fa-user"></i> Login
+    </a>
+</div>
+
 </nav>
 
            
