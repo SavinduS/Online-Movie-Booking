@@ -1,0 +1,415 @@
+/* Swans Cinema - Now Showing Page Styles */
+/* Theme Colors: Lavender (#E6E6FA, #D8BFD8, #DDA0DD) and White (#FFFFFF) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #2c2c2c;
+    background: linear-gradient(135deg, #f8f4ff 0%, #ffffff 100%);
+    min-height: 100vh;
+}
+
+/* Main Container */
+.main-content-savi {
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+.container-savi {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Page Header Styles */
+.page-header-savi {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.header-content-savi {
+    margin-bottom: 2rem;
+}
+
+.page-title-savi {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #6a5acd;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(106, 90, 205, 0.1);
+}
+
+.page-title-savi .icon-savi {
+    margin-right: 1rem;
+    color: #dda0dd;
+}
+
+.page-subtitle-savi {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header-decoration-savi {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.decoration-line-savi {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #e6e6fa, #dda0dd, #e6e6fa);
+    border-radius: 2px;
+}
+
+/* Movies Grid */
+.movies-section-savi {
+    margin-bottom: 4rem;
+}
+
+.movies-grid-savi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Movie Card Styles */
+.movie-card-savi {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(106, 90, 205, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 230, 250, 0.3);
+    position: relative;
+}
+
+.movie-card-savi:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(106, 90, 205, 0.2);
+}
+
+.movie-poster-container-savi {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.movie-poster-savi {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.movie-card-savi:hover .movie-poster-savi {
+    transform: scale(1.1);
+}
+
+.poster-overlay-savi {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(106, 90, 205, 0.8), rgba(221, 160, 221, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-card-savi:hover .poster-overlay-savi {
+    opacity: 1;
+}
+
+.book-now-btn-savi {
+    background: rgba(255, 255, 255, 0.9);
+    color: #6a5acd;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book-now-btn-savi:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.rating-badge-savi {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #dda0dd, #e6e6fa);
+    color: #6a5acd;
+    padding: 0.5rem 0.8rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(221, 160, 221, 0.4);
+}
+
+.rating-badge-savi i {
+    color: #ffd700;
+    margin-right: 0.3rem;
+}
+
+/* Movie Info Section */
+.movie-info-savi {
+    padding: 1.5rem;
+}
+
+.movie-title-savi {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6a5acd;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+}
+
+.movie-category-savi {
+    display: flex;
+    align-items: center;
+    color: #9370db;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.movie-category-savi i {
+    margin-right: 0.5rem;
+    color: #dda0dd;
+}
+
+.movie-description-savi {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.movie-actions-savi {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary-savi, .btn-secondary-savi {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.btn-primary-savi {
+    background: linear-gradient(135deg, #6a5acd, #9370db);
+    color: white;
+    box-shadow: 0 4px 15px rgba(106, 90, 205, 0.3);
+}
+
+.btn-primary-savi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(106, 90, 205, 0.4);
+    background: linear-gradient(135deg, #5a4fcf, #8a70e0);
+}
+
+.btn-secondary-savi {
+    background: transparent;
+    color: #6a5acd;
+    border: 2px solid #e6e6fa;
+}
+
+.btn-secondary-savi:hover {
+    background: #e6e6fa;
+    border-color: #dda0dd;
+    transform: translateY(-2px);
+}
+
+/* Error and No Movies States */
+.error-message-savi, .no-movies-savi {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(106, 90, 205, 0.1);
+}
+
+.error-message-savi i, .no-movies-savi i {
+    font-size: 3rem;
+    color: #dda0dd;
+    margin-bottom: 1rem;
+}
+
+.error-message-savi h3, .no-movies-savi h3 {
+    color: #6a5acd;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.error-message-savi p, .no-movies-savi p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Cinema Info Section */
+.cinema-info-savi {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(230, 230, 250, 0.5);
+}
+
+.info-grid-savi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.info-card-savi {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(230, 230, 250, 0.3);
+}
+
+.info-card-savi:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 25px rgba(106, 90, 205, 0.15);
+}
+
+.info-card-savi i {
+    font-size: 2.5rem;
+    color: #dda0dd;
+    margin-bottom: 1rem;
+}
+
+.info-card-savi h4 {
+    color: #6a5acd;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.info-card-savi p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-savi {
+        padding: 0 1rem;
+    }
+    
+    .page-title-savi {
+        font-size: 2.5rem;
+    }
+    
+    .movies-grid-savi {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .movie-actions-savi {
+        flex-direction: column;
+    }
+    
+    .btn-primary-savi, .btn-secondary-savi {
+        flex: none;
+    }
+    
+    .info-grid-savi {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title-savi {
+        font-size: 2rem;
+    }
+    
+    .page-subtitle-savi {
+        font-size: 1rem;
+    }
+    
+    .movie-poster-container-savi {
+        height: 300px;
+    }
+    
+    .movie-info-savi {
+        padding: 1rem;
+    }
+}
+
+/* Smooth Scrolling Enhancement */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading Animation for Images */
+.movie-poster-savi {
+    background: linear-gradient(135deg, #f8f4ff, #e6e6fa);
+}
+
+/* Focus States for Accessibility */
+.btn-primary-savi:focus, .btn-secondary-savi:focus, .book-now-btn-savi:focus {
+    outline: 3px solid #dda0dd;
+    outline-offset: 2px;
+}
+
+/* Subtle Animation for Cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.movie-card-savi {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.movie-card-savi:nth-child(1) { animation-delay: 0.1s; }
+.movie-card-savi:nth-child(2) { animation-delay: 0.2s; }
+.movie-card-savi:nth-child(3) { animation-delay: 0.3s; }
+.movie-card-savi:nth-child(4) { animation-delay: 0.4s; }
+.movie-card-savi:nth-child(5) { animation-delay: 0.5s; }
+.movie-card-savi:nth-child(6) { animation-delay: 0.6s; }

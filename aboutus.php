@@ -13,7 +13,7 @@
   <div class="hero-content">
     <h1>Celebrating 25+ Years of Cinematic Excellence</h1>
     <p>From a single screen in 1999 to a nationwide name in film entertainment — Swans Cinema has transformed the movie-going experience in Sri Lanka.</p>
-    <a href="index.html" class="hero-button">Book Tickets</a>
+    <a href="index.php" class="hero-button">Book Tickets</a>
   </div>
 </section>
 

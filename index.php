@@ -3,34 +3,36 @@
 
 <?php
 // ✅ Reusable function to print movies
-function displayMovies($connection, $type) {
-  $sql = "SELECT * FROM films WHERE type = '$type' ORDER BY id DESC";
+function displayMovies($connection, $status) {
+  $sql = "SELECT * FROM films WHERE status = '$status' ORDER BY release_date DESC";
   $result = $connection->query($sql);
 
-  if ($result->num_rows > 0) {
+  if ($result && $result->num_rows > 0) {
     foreach ($result as $row) {
       echo '
-      <div class="movie-card-savi" data-title="' . htmlspecialchars($row['name']) . '" data-category="' . htmlspecialchars($row['category']) . '">
+      <div class="movie-card-savi" data-title="' . htmlspecialchars($row['title']) . '" data-category="' . htmlspecialchars($row['category']) . '">
         <div class="movie-poster-savi">
-          <img src="' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['name']) . '">
+          <img src="' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['title']) . '">
           <div class="movie-overlay-savi">
             <button class="play-btn-savi"><i class="fas fa-play"></i></button>
             <button class="info-btn-savi"><i class="fas fa-info-circle"></i></button>
           </div>';
-      if ($type === 'Upcoming') {
+
+      if ($status === 'Upcoming') {
         echo '<div class="coming-soon-badge-savi">Coming Soon</div>';
       }
+
       echo '
         </div>
         <div class="movie-info-savi">
-          <h3 class="movie-title-savi">' . htmlspecialchars($row['name']) . '</h3>
+          <h3 class="movie-title-savi">' . htmlspecialchars($row['title']) . '</h3>
           <p class="movie-category-savi">' . htmlspecialchars($row['category']) . '</p>';
-      
-      if ($type === 'Upcoming') {
-        echo '<div class="release-date-savi"><i class="fas fa-calendar"></i><span>' . htmlspecialchars($row['release_date']) . '</span></div>';
-      } else {
+
+      if (!empty($row['rating'])) {
         echo '<div class="movie-rating-savi"><i class="fas fa-star"></i><span>' . htmlspecialchars($row['rating']) . '</span></div>';
       }
+
+      echo '<div class="release-date-savi"><i class="fas fa-calendar"></i><span>' . htmlspecialchars($row['release_date']) . '</span></div>';
 
       echo '</div>
       </div>';
@@ -46,7 +48,7 @@ function displayMovies($connection, $type) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swans Cinema | Home</title>
+  <title>Swans Cinema | Home </title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -115,7 +117,7 @@ function displayMovies($connection, $type) {
         </div>
         <div class="scroll-container-wrapper-savi">
           <div class="scroll-container-savi" id="trending-carousel">
-            <?php displayMovies($connection, 'Trending'); ?>
+            <?php displayMovies($connection, 'trending'); ?>
           </div>
         </div>
       </div>
@@ -136,21 +138,20 @@ function displayMovies($connection, $type) {
       </div>
     </section>
 
-    <!-- 🎬 Other Films -->
+      <!-- 🔥 Now Showing -->
     <section class="section-savi">
       <div class="container-savi">
         <div class="section-header-savi">
-          <h2 class="section-title-savi"><i class="fas fa-film"></i> Other Films</h2>
-          <p class="section-subtitle-savi">Curated collection of amazing movies</p>
+          <h2 class="section-title-savi"><i class="fas fa-fire"></i> Now Showing</h2>
+          <p class="section-subtitle-savi">Most popular movies this week</p>
         </div>
         <div class="scroll-container-wrapper-savi">
-          <div class="scroll-container-savi" id="ourfilms-carousel">
-            <?php displayMovies($connection, 'Other'); ?>
+          <div class="scroll-container-savi" id="nowshowing-carousel">
+            <?php displayMovies($connection, 'Now Showing'); ?>
           </div>
         </div>
       </div>
     </section>
-
   </div>
 
   <?php include 'partial/footer.php'; ?>
