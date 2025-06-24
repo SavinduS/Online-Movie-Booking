@@ -248,8 +248,13 @@ body {
 }
 
 .section-subtitle-savi {
-  color: #777;
-  margin-top: 5px;
+  color: #222; /* darker black-like tone */
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Scrollable Container */

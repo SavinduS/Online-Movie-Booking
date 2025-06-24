@@ -1,7 +1,12 @@
-<?php include("partial/header.php"); ?>
+<?php include("partial/header.php"); session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+    const loggedInEmail = <?php echo isset($_SESSION['user_email']) ? json_encode($_SESSION['user_email']) : 'null'; ?>;
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swans Cinema | Reviews</title>
@@ -633,7 +638,7 @@
                     <div class="stat-label-savi">Happy Customers</div>
                 </div>
                 <div class="stat-item-savi">
-                    <div class="stat-number-savi" data-target="9.8">0</div>
+                    <div class="stat-number-savi" data-target="9.6">0</div>
                     <div class="stat-label-savi">Average Rating</div>
                 </div>
                 <div class="stat-item-savi">

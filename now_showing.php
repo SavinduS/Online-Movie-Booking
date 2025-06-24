@@ -1,10 +1,11 @@
 <?php
-include 'database/db.php'; // ✅ Reuse your existing mysqli connection
+include 'database/db.php'; // ✅ mysqli connection
 
-// Convert mysqli to PDO-style logic or update your logic to use mysqli:
+// Load "Now Showing" films from database
 $movies = [];
+
 if ($connection) {
-    $stmt = $connection->prepare("SELECT * FROM films WHERE status = 'Now Showing' ORDER BY rating DESC");
+    $stmt = $connection->prepare("SELECT * FROM films WHERE status = 'Now Showing'");
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
@@ -13,33 +14,24 @@ if ($connection) {
 } else {
     $error_message = "Database connection failed.";
 }
-
-
-// ✅ Descriptions (optional, static for now)
-$movie_descriptions = [
-    'Frozen 2' => 'Anna, Elsa, Kristoff, Olaf and Sven leave Arendelle to travel to an ancient, autumn-bound forest of an enchanted land.',
-    'Luca' => 'A young boy experiences an unforgettable summer filled with gelato, pasta and endless scooter rides.',
-    'Elemental' => 'In a city where fire, water, land, and air residents live together...',
-    'No Time To Die' => 'James Bond’s peace is short-lived when a friend from the CIA turns up asking for help.',
-    'La La Land' => 'A jazz musician and an aspiring actress meet and fall in love in LA.',
-    'The Whale' => 'A reclusive, morbidly obese English teacher tries to reconnect with his estranged daughter.'
-];
 ?>
+
+<?php include 'partial/header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Now Showing - Swans Cinema</title>
+  <title>Swans Cinema | Now Showing</title>
   <link rel="stylesheet" href="css/now_showing.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-<?php include 'partial/header.php'; ?>
-
 <main class="main-content-savi">
   <div class="container-savi">
+    <!-- Page Heading -->
     <section class="page-header-savi">
       <div class="header-content-savi">
         <h1 class="page-title-savi">
@@ -52,6 +44,7 @@ $movie_descriptions = [
       </div>
     </section>
 
+    <!-- Movies Section -->
     <section class="movies-section-savi">
       <?php if (isset($error_message)): ?>
         <div class="error-message-savi">
@@ -70,32 +63,33 @@ $movie_descriptions = [
             <div class="movie-card-savi" data-movie-id="<?php echo $movie['id']; ?>">
               <div class="movie-poster-container-savi">
                 <img src="<?php echo htmlspecialchars($movie['image']); ?>" 
-                     alt="<?php echo htmlspecialchars($movie['name']); ?>" 
+                     alt="<?php echo htmlspecialchars($movie['title']); ?>" 
                      class="movie-poster-savi" loading="lazy" />
                 <div class="poster-overlay-savi">
-                  <button class="book-now-btn-savi"><i class="fas fa-ticket-alt"></i> Book Now</button>
+                  <a href="booking.php?movie_id=<?php echo $movie['id']; ?>" class="book-now-btn-savi" style="text-decoration: none;">
+                    <i class="fas fa-ticket-alt"></i> Book Now
+                  </a>
                 </div>
                 <div class="rating-badge-savi">
                   <i class="fas fa-star"></i>
                   <span><?php echo number_format($movie['rating'], 1); ?></span>
                 </div>
               </div>
+
               <div class="movie-info-savi">
-                <h3 class="movie-title-savi"><?php echo htmlspecialchars($movie['name']); ?></h3>
+                <h3 class="movie-title-savi"><?php echo htmlspecialchars($movie['title']); ?></h3>
                 <div class="movie-category-savi">
                   <i class="fas fa-tag"></i>
                   <span><?php echo htmlspecialchars($movie['category']); ?></span>
                 </div>
-                <?php if (!empty($movie_descriptions[$movie['name']])): ?>
-                  <p class="movie-description-savi"><?php echo htmlspecialchars($movie_descriptions[$movie['name']]); ?></p>
-                <?php endif; ?>
+
                 <div class="movie-actions-savi">
-                  <button class="btn-primary-savi book-ticket-btn-savi">
+                  <a href="booking.php?movie_id=<?php echo $movie['id']; ?>" class="btn-primary-savi book-ticket-btn-savi" style="text-decoration: none;">
                     <i class="fas fa-calendar-alt"></i> Book Tickets
-                  </button>
-                  <button class="btn-secondary-savi view-details-btn-savi">
+                  </a>
+                  <a href="movie_details.php?movie_id=<?php echo $movie['id']; ?>" class="btn-secondary-savi view-details-btn-savi" style="text-decoration: none;">
                     <i class="fas fa-info-circle"></i> Details
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -103,11 +97,10 @@ $movie_descriptions = [
         </div>
       <?php endif; ?>
     </section>
-
   </div>
 </main>
 
 <?php include 'partial/footer.php'; ?>
-<script src="js/now_showing.js"></script>
+
 </body>
 </html>

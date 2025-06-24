@@ -12,9 +12,10 @@
       <h3 class="footer-heading-savi">Quick Links</h3>
       <ul>
         <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fas fa-film"></i> Now Showing</a></li>
-        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
-        <li><a href="#"><i class="fas fa-phone"></i> Contact Us</a></li>
+        <li><a href="now_showing.php"><i class="fas fa-film"></i> Now Showing</a></li>
+        <li><a href="reviews.php"> <i class="fas fa-star"></i> Reviews</a></li>
+        <li><a href="aboutus.php"><i class="fas fa-info-circle"></i> About Us</a></li>
+       
       </ul>
     </div>
 
@@ -22,10 +23,10 @@
     <div class="footer-section-savi">
       <h3 class="footer-heading-savi">Follow Us</h3>
       <div class="footer-social-savi">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
 

@@ -1,4 +1,7 @@
+
+
 <?php
+session_start();
 // review_api.php - Main API handler for all CRUD operations
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -110,12 +113,23 @@ try {
                 break;
             }
             
+            session_start(); // Add at the top if not already done
+
             $data = [
-                'name' => sanitizeInput($_POST['name'] ?? ''),
-                'email' => sanitizeInput($_POST['email'] ?? ''),
+                'name' => $_SESSION['user_name'] ?? '',
+                'email' => $_SESSION['user_email'] ?? '',
                 'rating' => $_POST['rating'] ?? '',
                 'comment' => sanitizeInput($_POST['comment'] ?? '')
             ];
+            // Check if user is logged in
+            if (empty($data['name']) || empty($data['email'])) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'You must be logged in to submit a review'
+                ]);
+                break;
+            }
+
             
             // Validate data
             $errors = validateReviewData($data);

@@ -40,7 +40,7 @@ body {
 
 .page-title-savi {
     font-size: 3.5rem;
-    font-weight: 300;
+    font-weight: 600;
     color: #6a5acd;
     margin-bottom: 1rem;
     text-shadow: 0 2px 4px rgba(106, 90, 205, 0.1);
@@ -48,15 +48,17 @@ body {
 
 .page-title-savi .icon-savi {
     margin-right: 1rem;
-    color: #dda0dd;
+    color: #8d478d;
 }
 
 .page-subtitle-savi {
-    font-size: 1.2rem;
-    color: #666;
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto;
+    color: #222; /* darker black-like tone */
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .header-decoration-savi {

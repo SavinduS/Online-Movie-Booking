@@ -69,7 +69,7 @@ function displayMovies($connection, $status) {
       <h1 class="hero-title-savi">Experience Movies Like Never Before</h1>
       <p class="hero-subtitle-savi">Discover amazing films and book your perfect seats with ease</p>
 
-      <form action="search.php" method="GET" class="hero-search-savi">
+      <form action="#container-savi" method="GET" class="hero-search-savi">
         <div class="search-wrapper-savi">
           <i class="fas fa-search search-icon-savi"></i>
           <input type="text" name="query" id="searchInput" placeholder="Search for movies or genres..." autocomplete="off">
