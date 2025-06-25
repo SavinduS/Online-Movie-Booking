@@ -372,7 +372,7 @@ $stmt->close();
                     </div>
 
                     <div class="sup-logout-section">
-                        <a href="logout.php" class="sup-logout-btn">
+                        <a href="Login_index.php" class="sup-logout-btn">
                             <i class="fas fa-sign-out-alt sup-btn-icon"></i>
                             LOGOUT
                         </a>
