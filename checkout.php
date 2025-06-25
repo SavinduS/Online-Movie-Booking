@@ -18,27 +18,35 @@ $tax_amount = ($total_amount * $tax_rate);
 $final_amount = $total_amount + $service_fee + $tax_amount;
 
 if ($_POST) {
-    // Process payment here
-    // This is where you would integrate with payment gateway
-    
-    // For demo, we'll just show success
+    // Create full name
+    $full_name = $_POST['first_name'] . ' ' . $_POST['last_name'];
+
+    // Store everything into confirmation session
     $_SESSION['booking_confirmation'] = [
         'booking_id' => 'BK' . date('YmdHis') . rand(100, 999),
         'booking_details' => $booking_details,
         'selected_seats' => $selected_seats,
         'total_amount' => $final_amount,
         'payment_method' => $_POST['payment_method'],
-        'booking_date' => date('Y-m-d H:i:s')
+        'booking_date' => date('Y-m-d H:i:s'),
+
+        // ✅ New user fields
+        'first_name' => $_POST['first_name'],
+        'last_name' => $_POST['last_name'],
+        'full_name' => $full_name,
+        'email' => $_POST['email'],
+        'phone' => $_POST['phone']
     ];
-    
-    // Clear booking session
+
+    // Clear temporary session
     unset($_SESSION['booking_details']);
     unset($_SESSION['selected_seats']);
     unset($_SESSION['total_amount']);
-    
+
     header('Location: booking_confirmation.php');
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -210,10 +218,6 @@ if ($_POST) {
                         <div class="flex justify-between">
                             <span class="text-gray-600">Date & Time:</span>
                             <span class="font-medium"><?php echo date('M d', strtotime($booking_details['date'])) . ' • ' . $booking_details['time']; ?></span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Format:</span>
-                            <span class="font-medium"><?php echo htmlspecialchars($booking_details['format']); ?></span>
                         </div>
                         
                         <div class="border-t pt-3 mt-3">

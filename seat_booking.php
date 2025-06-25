@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include 'database/db.php';
+
 // Check if booking details exist
 if (!isset($_SESSION['booking_details'])) {
     header('Location: booking.php');
@@ -9,14 +11,48 @@ if (!isset($_SESSION['booking_details'])) {
 
 $booking_details = $_SESSION['booking_details'];
 
-// Sample seat layout - replace with database query
+// Sample seat layout
 $total_rows = 12;
 $seats_per_row = ['A' => 7, 'B' => 7, 'C' => 7, 'D' => 7, 'E' => 7, 'F' => 7, 'G' => 7, 'H' => 7, 'I' => 12, 'J' => 10, 'K' => 14, 'L' => 14];
 
-// Reserved seats (from database)
-$reserved_seats = ['A1', 'A2', 'B5', 'C3', 'F8', 'F9', 'H5', 'H6', 'I7', 'J1', 'J2', 'K11', 'K12', 'L13', 'L14'];
 
-// Unavailable seats (broken/maintenance)
+// Fetch reserved seats from database
+$reserved_seats = [];
+include 'database/db.php';
+
+$reserved_seats = [];
+
+$hall = $connection->real_escape_string($booking_details['hall_name']);
+$date = $connection->real_escape_string($booking_details['date']);
+$time = $connection->real_escape_string($booking_details['time']);
+
+$sql = "SELECT selected_seats FROM bookings 
+        WHERE hall_name = '$hall' 
+        AND show_date = '$date' 
+        AND show_time = '$time'";
+
+
+$result = $connection->query($sql);
+
+if ($result && $result->num_rows > 0) {
+
+    while ($row = $result->fetch_assoc()) {
+        $seats = json_decode($row['selected_seats'], true);
+        if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Expecting comma-separated string like "A1, A2"
+        $seats = explode(',', $row['selected_seats']);
+        foreach ($seats as $seat) {
+            $reserved_seats[] = trim($seat); // Remove any whitespace
+        }
+    }
+}
+
+    }
+}
+
+
+// Unavailable seats 
 $unavailable_seats = ['G1', 'F1', 'F2', 'E6', 'E7'];
 
 // Seat prices
@@ -74,7 +110,6 @@ if ($_POST && isset($_POST['selected_seats'])) {
                                 <?php echo htmlspecialchars($booking_details['hall_name']); ?> • 
                                 <?php echo htmlspecialchars($booking_details['date']); ?> • 
                                 <?php echo htmlspecialchars($booking_details['time']); ?> • 
-                                <?php echo htmlspecialchars($booking_details['format']); ?>
                             </p>
                         </div>
                     </div>
@@ -272,10 +307,7 @@ if ($_POST && isset($_POST['selected_seats'])) {
                             <span class="text-gray-600">Time:</span>
                             <span class="font-medium"><?php echo htmlspecialchars($booking_details['time']); ?></span>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Format:</span>
-                            <span class="font-medium"><?php echo htmlspecialchars($booking_details['format']); ?></span>
-                        </div>
+                        
                     </div>
 
                     <div class="border-t pt-4 mt-4">

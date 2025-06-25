@@ -6,8 +6,8 @@ $movie_id = $_GET['movie_id'] ?? 1;
 $movie_title = $_GET['movie_title'] ?? "Sample Movie";
 
 $film_halls = [
-    1 => ['name' => 'Swans Cinema Colombo', 'location' => 'Colombo'],
-    2 => ['name' => 'Swans Cinema Kandy', 'location' => 'Kandy'],
+    1 => ['name' => 'Swans Cinema 3D Colombo', 'location' => 'Colombo'],
+    2 => ['name' => 'Swans Cinema 3D Kandy', 'location' => 'Kandy'],
     3 => ['name' => 'Swans Cinema Galle', 'location' => 'Galle'],
     4 => ['name' => 'Swans Cinema Negombo', 'location' => 'Negombo']
 ];
@@ -20,7 +20,6 @@ if ($_POST) {
         'movie_title' => $movie_title,
         'date' => $_POST['date'],
         'time' => $_POST['time'],
-        'format' => $_POST['format'],
         'hall_id' => $_POST['hall_id'],
         'hall_name' => $film_halls[$_POST['hall_id']]['name']
     ];
@@ -125,39 +124,7 @@ if ($_POST) {
                     </div>
                 </div>
 
-                <!-- Format Selection -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-cube text-primary"></i>
-                        Select Format
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="format" value="2D" class="hidden peer" required>
-                            <div class="p-4 border-2 border-gray-200 rounded-lg hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                <div class="flex items-center gap-3">
-                                    <i class="fas fa-tv text-lg"></i>
-                                    <div>
-                                        <div class="font-semibold">2D</div>
-                                        <div class="text-sm opacity-75">Standard viewing experience</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="format" value="3D" class="hidden peer" required>
-                            <div class="p-4 border-2 border-gray-200 rounded-lg hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                <div class="flex items-center gap-3">
-                                    <i class="fas fa-cubes text-lg"></i>
-                                    <div>
-                                        <div class="font-semibold">3D</div>
-                                        <div class="text-sm opacity-75">Immersive 3D experience</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+                
 
                 <!-- Time Selection -->
                 <div class="bg-white rounded-lg shadow-lg p-6">
@@ -197,8 +164,7 @@ if ($_POST) {
             
             form.addEventListener('change', function() {
                 const formData = new FormData(form);
-                const isComplete = formData.get('date') && formData.get('hall_id') && 
-                                 formData.get('format') && formData.get('time');
+                const isComplete = formData.get('date') && formData.get('hall_id')&& formData.get('time');
                 
                 if (isComplete) {
                     submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
