@@ -1,6 +1,6 @@
 <?php
 // Connect to MySQL
-$conn = new mysqli("localhost", "root", "", "movie_booking");
+$conn = new mysqli("localhost", "root", "12345", "movie_booking");
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
