@@ -1,8 +1,21 @@
+<?php
+// Start session at the beginning of every page
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Get current page for active navigation highlighting
+$current_page = basename($_SERVER['PHP_SELF']);
+
+// Check if user is logged in
+$is_logged_in = isset($_SESSION['user_id']) || isset($_SESSION['username']) || isset($_SESSION['logged_in']);
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-     <link rel="icon" type="image/png" href="images\favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -47,19 +60,20 @@
         }
 
         /* Logo Styles */
-       .logo-savi i {
-        margin-right: 8px; /* Reduce this if it's too wide */
-        vertical-align: middle;
+        .logo-savi i {
+            margin-right: 8px;
+            vertical-align: middle;
         }
 
         .logo-savi {
-        display: flex;
-        align-items: center;
-        font-size: 28px;
-        font-weight: 800;
-        color: #6b46c1; /* lavender-purple */
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: #6b46c1;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-
 
         .logo-savi:hover {
             transform: translateY(-2px);
@@ -131,12 +145,19 @@
 
         /* Active Link */
         .nav-link-savi.active-savi {
-            color:rgb(97, 59, 185);
+            color: rgb(97, 59, 185);
             background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(147, 51, 234, 0.1));
         }
 
-        /* Login Button */
-        .login-btn-savi {
+        /* User Actions Container */
+        .user-actions-savi {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Login/Logout Button */
+        .login-btn-savi, .logout-btn-savi {
             background: linear-gradient(135deg, #6b46c1, #9333ea);
             color: white;
             padding: 12px 24px;
@@ -153,14 +174,57 @@
             box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
         }
 
-        .login-btn-savi:hover {
+        /* Profile Button */
+        .profile-btn-savi {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+        }
+
+        .login-btn-savi:hover, .logout-btn-savi:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(107, 70, 193, 0.4);
             background: linear-gradient(135deg, #7c3aed, #a855f7);
         }
 
-        .login-btn-savi:active {
+        .profile-btn-savi:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+
+        .login-btn-savi:active, .logout-btn-savi:active, .profile-btn-savi:active {
             transform: translateY(-1px);
+        }
+
+        /* Logout button specific styling */
+        .logout-btn-savi {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .logout-btn-savi:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Welcome text */
+        .welcome-text-savi {
+            color: #4a5568;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-right: 10px;
         }
 
         /* Mobile Menu Toggle */
@@ -189,29 +253,6 @@
         /* Mobile Menu Checkbox */
         .mobile-menu-checkbox-savi {
             display: none;
-        }
-
-        /* Demo Content */
-        .demo-content-savi {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .demo-content-savi h1 {
-            color: #6b46c1;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .demo-content-savi p {
-            color: #4a5568;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         /* Mobile Responsive */
@@ -266,22 +307,27 @@
                 font-size: 1rem;
             }
 
-            .login-btn-savi {
+            .user-actions-savi {
+                flex-direction: column;
+                gap: 15px;
                 margin-top: 20px;
+                width: 100%;
+            }
+
+            .login-btn-savi, .logout-btn-savi, .profile-btn-savi {
                 justify-content: center;
                 padding: 15px 30px;
+                width: 100%;
+            }
+
+            .welcome-text-savi {
+                text-align: center;
+                margin-right: 0;
+                margin-bottom: 10px;
             }
 
             .navbar-container-savi {
                 padding: 0 15px;
-            }
-
-            .demo-content-savi h1 {
-                font-size: 2rem;
-            }
-
-            .demo-content-savi p {
-                font-size: 1rem;
             }
         }
 
@@ -311,6 +357,8 @@
         /* Focus styles for accessibility */
         .nav-link-savi:focus,
         .login-btn-savi:focus,
+        .logout-btn-savi:focus,
+        .profile-btn-savi:focus,
         .mobile-toggle-savi:focus {
             outline: 2px solid #6b46c1;
             outline-offset: 2px;
@@ -321,50 +369,74 @@
     <nav class="navbar-savi">
         <input type="checkbox" id="mobile-menu-savi" class="mobile-menu-checkbox-savi">
         <div class="navbar-container-savi">
-            <?php $current_page = basename($_SERVER['PHP_SELF']); ?>
+            <!-- Logo -->
+            <a href="index.php" class="logo-savi">
+                <i class="fa-solid fa-video"></i> Swans Cinema
+            </a>
 
-<nav class="navbar-savi">
-    <div class="navbar-container-savi">
+            <!-- Navigation Links -->
+            <ul class="nav-menu-savi">
+                <li class="nav-item-savi">
+                    <a href="index.php" class="nav-link-savi <?php if ($current_page == 'index.php') echo 'active-savi'; ?>">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item-savi">
+                    <a href="now_showing.php" class="nav-link-savi <?php if ($current_page == 'now_showing.php') echo 'active-savi'; ?>">
+                        <i class="fas fa-video"></i> Now Showing
+                    </a>
+                </li>
+                <li class="nav-item-savi">
+                    <a href="reviews.php" class="nav-link-savi <?php if ($current_page == 'reviews.php') echo 'active-savi'; ?>">
+                        <i class="fas fa-star"></i> Reviews
+                    </a>
+                </li>
+                <li class="nav-item-savi">
+                    <a href="aboutus.php" class="nav-link-savi <?php if ($current_page == 'aboutus.php') echo 'active-savi'; ?>">
+                        <i class="fas fa-info-circle"></i> About Us
+                    </a>
+                </li>
 
-        <!-- Logo -->
-        <div class="logo-savi">
-            <i class="fa-solid fa-video"></i> Swans Cinema</span>
-        </div>
+                <!-- User Actions for Mobile (shown in mobile menu) -->
+                <li class="nav-item-savi mobile-user-actions" style="display: none;">
+                    <?php if ($is_logged_in): ?>
+                        <?php if (!empty($username)): ?>
+                            <div class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</div>
+                        <?php endif; ?>
+                        <div class="user-actions-savi">
+                            <a href="UserProfile.php" class="login-btn-savi">
+                                <i class="fas fa-user-circle"></i> Profile
+                            </a>
+                            <a href="logout.php" class="logout-btn-savi">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <a href="login_index.php" class="login-btn-savi">
+                            <i class="fas fa-user"></i> Login
+                        </a>
+                    <?php endif; ?>
+                </li>
+            </ul>
 
-        <!-- Navigation Links -->
-        <ul class="nav-menu-savi">
-            <li class="nav-item-savi">
-                <a href="index.php" class="nav-link-savi <?php if ($current_page == 'index.php') echo 'active-savi'; ?>">
-                    <i class="fas fa-home"></i> Home
-                </a>
-            </li>
-            <li class="nav-item-savi">
-                <a href="now_showing.php" class="nav-link-savi <?php if ($current_page == 'now_showing.php') echo 'active-savi'; ?>">
-                    <i class="fas fa-video"></i> Now Showing
-                </a>
-            </li>
-            <li class="nav-item-savi">
-                <a href="reviews.php" class="nav-link-savi <?php if ($current_page == 'reviews.php') echo 'active-savi'; ?>">
-                    <i class="fas fa-star"></i> Reviews
-                </a>
-            </li>
-            <li class="nav-item-savi">
-                <a href="aboutus.php" class="nav-link-savi <?php if ($current_page == 'aboutus.php') echo 'active-savi'; ?>">
-                    <i class="fas fa-info-circle"></i> About Us
-                </a>
-            </li>
-        </ul>
-
-        <!-- Login Button -->
-       <div class="login-btn-container-savi">
-        <a href="login_index.php" class="login-btn-savi">
-        <i class="fas fa-user"></i> Login
-    </a>
-</div>
-
-</nav>
-
-           
+            <!-- User Actions for Desktop -->
+            <div class="user-actions-savi desktop-user-actions">
+                <?php if ($is_logged_in): ?>
+                    <?php if (!empty($username)): ?>
+                        <span class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</span>
+                    <?php endif; ?>
+                    <a href="UserProfile.php" class="login-btn-savi">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </a>
+                    <a href="logout.php" class="logout-btn-savi">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                <?php else: ?>
+                    <a href="login_index.php" class="login-btn-savi">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                <?php endif; ?>
+            </div>
 
             <!-- Mobile Menu Toggle -->
             <label for="mobile-menu-savi" class="mobile-toggle-savi">
@@ -375,6 +447,21 @@
         </div>
     </nav>
 
-    
-</body>
-</html>
+    <style>
+        /* Mobile-specific user actions styling */
+        @media (max-width: 768px) {
+            .desktop-user-actions {
+                display: none;
+            }
+            
+            .mobile-user-actions {
+                display: block !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-user-actions {
+                display: none !important;
+            }
+        }
+    </style>

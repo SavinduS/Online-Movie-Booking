@@ -133,7 +133,7 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - Swans Cinema</title>
+    <title>Swans Cinema | User Profile</title>
     <link rel="stylesheet" href="css/UserProfile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -372,7 +372,7 @@ $stmt->close();
                     </div>
 
                     <div class="sup-logout-section">
-                        <a href="Login_index.php" class="sup-logout-btn">
+                        <a href="logout.php" class="sup-logout-btn">
                             <i class="fas fa-sign-out-alt sup-btn-icon"></i>
                             LOGOUT
                         </a>

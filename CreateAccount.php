@@ -75,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account - Swans Cinema</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>Swans Cinema | Sign Up</title>
     <link rel="stylesheet" href="css/CreateAccount.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
