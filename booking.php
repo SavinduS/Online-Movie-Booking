@@ -30,55 +30,44 @@ if ($_POST) {
 
 <!DOCTYPE html>
 <html lang="en">
+
+<?php include 'partial/header.php'; ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Tickets - <?php echo htmlspecialchars($movie_title); ?></title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#b793d2'
-                    },
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="css/booking.css">
 </head>
-<body class="bg-gray-50 font-poppins">
-    <div class="min-h-screen py-8">
-        <div class="max-w-4xl mx-auto px-4">
+<body>
+    <div class="container">
+        <div class="content-wrapper">
             <!-- Header -->
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-                <div class="flex items-center gap-4">
-                    <button onclick="history.back()" class="text-primary hover:text-purple-700 transition-colors">
-                        <i class="fas fa-arrow-left text-xl"></i>
+            <div class="header-card">
+                <div class="header-content">
+                    <button class="back-button" onclick="history.back()">
+                        <i class="fas fa-arrow-left"></i>
                     </button>
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-800"><?php echo htmlspecialchars($movie_title); ?></h1>
-                        <p class="text-gray-600 flex items-center gap-2">
-                            <i class="fas fa-film text-primary"></i>
+                    <div class="header-text">
+                        <h1 class="movie-title"><?php echo htmlspecialchars($movie_title); ?></h1>
+                        <p class="subtitle">
+                            <i class="fas fa-film"></i>
                             Select your preferred showtime and cinema
                         </p>
                     </div>
                 </div>
             </div>
 
-            <form method="POST" class="space-y-6">
+            <form method="POST" class="booking-form">
                 <!-- Date Selection -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-calendar-alt text-primary"></i>
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
                         Select Date
                     </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                    <div class="date-grid">
                         <?php
                         for ($i = 0; $i < 7; $i++) {
                             $date = date('Y-m-d', strtotime("+$i days"));
@@ -86,13 +75,13 @@ if ($_POST) {
                             $day_name = date('D', strtotime("+$i days"));
                             $is_today = $i === 0;
                         ?>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="date" value="<?php echo $date; ?>" class="hidden peer" required>
-                            <div class="p-3 border-2 border-gray-200 rounded-lg text-center hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                <div class="text-sm font-medium"><?php echo $day_name; ?></div>
-                                <div class="text-xs"><?php echo $display_date; ?></div>
+                        <label class="date-option">
+                            <input type="radio" name="date" value="<?php echo $date; ?>" required>
+                            <div class="date-card">
+                                <div class="day-name"><?php echo $day_name; ?></div>
+                                <div class="date-display"><?php echo $display_date; ?></div>
                                 <?php if ($is_today): ?>
-                                <div class="text-xs text-primary peer-checked:text-white">Today</div>
+                                <div class="today-label">Today</div>
                                 <?php endif; ?>
                             </div>
                         </label>
@@ -101,21 +90,21 @@ if ($_POST) {
                 </div>
 
                 <!-- Cinema Hall Selection -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-building text-primary"></i>
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-building"></i>
                         Select Cinema Hall
                     </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="hall-grid">
                         <?php foreach ($film_halls as $id => $hall): ?>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="hall_id" value="<?php echo $id; ?>" class="hidden peer" required>
-                            <div class="p-4 border-2 border-gray-200 rounded-lg hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                <div class="flex items-center gap-3">
-                                    <i class="fas fa-map-marker-alt text-lg"></i>
-                                    <div>
-                                        <div class="font-semibold"><?php echo htmlspecialchars($hall['name']); ?></div>
-                                        <div class="text-sm opacity-75"><?php echo htmlspecialchars($hall['location']); ?></div>
+                        <label class="hall-option">
+                            <input type="radio" name="hall_id" value="<?php echo $id; ?>" required>
+                            <div class="hall-card">
+                                <div class="hall-content">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div class="hall-info">
+                                        <div class="hall-name"><?php echo htmlspecialchars($hall['name']); ?></div>
+                                        <div class="hall-location"><?php echo htmlspecialchars($hall['location']); ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -124,20 +113,18 @@ if ($_POST) {
                     </div>
                 </div>
 
-                
-
                 <!-- Time Selection -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-clock text-primary"></i>
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-clock"></i>
                         Select Showtime
                     </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                    <div class="time-grid">
                         <?php foreach ($showtimes as $time): ?>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="time" value="<?php echo $time; ?>" class="hidden peer" required>
-                            <div class="p-3 border-2 border-gray-200 rounded-lg text-center hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                <div class="font-semibold"><?php echo $time; ?></div>
+                        <label class="time-option">
+                            <input type="radio" name="time" value="<?php echo $time; ?>" required>
+                            <div class="time-card">
+                                <div class="time-display"><?php echo $time; ?></div>
                             </div>
                         </label>
                         <?php endforeach; ?>
@@ -145,8 +132,8 @@ if ($_POST) {
                 </div>
 
                 <!-- Continue Button -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <button type="submit" class="w-full bg-primary hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
+                <div class="card">
+                    <button type="submit" class="continue-button opacity-50 cursor-not-allowed" disabled>
                         <i class="fas fa-couch"></i>
                         Select Seats
                         <i class="fas fa-arrow-right"></i>
@@ -156,29 +143,8 @@ if ($_POST) {
         </div>
     </div>
 
-    <script>
-        // Add some interactivity
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const submitBtn = form.querySelector('button[type="submit"]');
-            
-            form.addEventListener('change', function() {
-                const formData = new FormData(form);
-                const isComplete = formData.get('date') && formData.get('hall_id')&& formData.get('time');
-                
-                if (isComplete) {
-                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    submitBtn.disabled = false;
-                } else {
-                    submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    submitBtn.disabled = true;
-                }
-            });
-            
-            // Initially disable button
-            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            submitBtn.disabled = true;
-        });
-    </script>
+    <script src="js/booking.js"></script>
+
+    <?php include 'partial/footer.php'; ?>
 </body>
 </html>

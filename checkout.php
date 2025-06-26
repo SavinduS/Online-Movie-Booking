@@ -51,122 +51,111 @@ if ($_POST) {
 
 <!DOCTYPE html>
 <html lang="en">
+
+<?php include 'partial/header.php'; ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - <?php echo htmlspecialchars($booking_details['movie_title']); ?></title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/checkout.js"></script>
+    <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#b793d2'
-                    },
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="bg-gray-50 font-poppins">
-    <div class="min-h-screen py-8">
-        <div class="max-w-4xl mx-auto px-4">
+<body>
+    <div class="checkout-container">
+        <div class="checkout-wrapper">
             <!-- Header -->
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-                <div class="flex items-center gap-4">
-                    <button onclick="history.back()" class="text-primary hover:text-purple-700 transition-colors">
-                        <i class="fas fa-arrow-left text-xl"></i>
+            <div class="checkout-header">
+                <div class="header-content">
+                    <button onclick="history.back()" class="back-button">
+                        <i class="fas fa-arrow-left"></i>
                     </button>
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-800">Checkout</h1>
-                        <p class="text-gray-600 flex items-center gap-2">
-                            <i class="fas fa-credit-card text-primary"></i>
+                    <div class="header-text">
+                        <h1 class="page-title">Checkout</h1>
+                        <p class="page-subtitle">
+                            <i class="fas fa-credit-card"></i>
                             Complete your booking
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="checkout-grid">
                 <!-- Payment Form -->
-                <div class="lg:col-span-2 space-y-6">
+                <div class="payment-section">
                     <!-- Customer Information -->
-                    <div class="bg-white rounded-lg shadow-lg p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                            <i class="fas fa-user text-primary"></i>
+                    <div class="form-card">
+                        <h2 class="card-title">
+                            <i class="fas fa-user"></i>
                             Customer Information
                         </h2>
                         <form method="POST" id="checkout-form">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                                    <input type="text" name="first_name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" name="first_name" required class="form-input">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                                    <input type="text" name="last_name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" name="last_name" required class="form-input">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" required class="form-input">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                    <input type="tel" name="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" name="phone" required class="form-input">
                                 </div>
                             </div>
                     </div>
 
                     <!-- Payment Method -->
-                    <div class="bg-white rounded-lg shadow-lg p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                            <i class="fas fa-credit-card text-primary"></i>
+                    <div class="form-card">
+                        <h2 class="card-title">
+                            <i class="fas fa-credit-card"></i>
                             Payment Method
                         </h2>
                         
-                        <div class="space-y-4">
+                        <div class="payment-methods">
                             <!-- Credit/Debit Card -->
-                            <label class="cursor-pointer">
-                                <input type="radio" name="payment_method" value="card" class="hidden peer" required>
-                                <div class="p-4 border-2 border-gray-200 rounded-lg hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                    <div class="flex items-center gap-3">
-                                        <i class="fas fa-credit-card text-lg"></i>
-                                        <div>
-                                            <div class="font-semibold">Credit/Debit Card</div>
-                                            <div class="text-sm opacity-75">Visa, MasterCard, American Express</div>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="card" class="payment-radio" required>
+                                <div class="payment-card">
+                                    <div class="payment-info">
+                                        <i class="fas fa-credit-card payment-icon"></i>
+                                        <div class="payment-details">
+                                            <div class="payment-title">Credit/Debit Card</div>
+                                            <div class="payment-subtitle">Visa, MasterCard, American Express</div>
                                         </div>
                                     </div>
                                 </div>
                             </label>
 
                             <!-- Digital Wallet -->
-                            <label class="cursor-pointer">
-                                <input type="radio" name="payment_method" value="wallet" class="hidden peer">
-                                <div class="p-4 border-2 border-gray-200 rounded-lg hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                    <div class="flex items-center gap-3">
-                                        <i class="fas fa-mobile-alt text-lg"></i>
-                                        <div>
-                                            <div class="font-semibold">Digital Wallet</div>
-                                            <div class="text-sm opacity-75">eZ Cash, PayPal, Google Pay</div>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="wallet" class="payment-radio">
+                                <div class="payment-card">
+                                    <div class="payment-info">
+                                        <i class="fas fa-mobile-alt payment-icon"></i>
+                                        <div class="payment-details">
+                                            <div class="payment-title">Digital Wallet</div>
+                                            <div class="payment-subtitle">eZ Cash, PayPal, Google Pay</div>
                                         </div>
                                     </div>
                                 </div>
                             </label>
 
                             <!-- Bank Transfer -->
-                            <label class="cursor-pointer">
-                                <input type="radio" name="payment_method" value="bank" class="hidden peer">
-                                <div class="p-4 border-2 border-gray-200 rounded-lg hover:border-primary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white transition-all">
-                                    <div class="flex items-center gap-3">
-                                        <i class="fas fa-university text-lg"></i>
-                                        <div>
-                                            <div class="font-semibold">Bank Transfer</div>
-                                            <div class="text-sm opacity-75">Direct bank transfer</div>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="bank" class="payment-radio">
+                                <div class="payment-card">
+                                    <div class="payment-info">
+                                        <i class="fas fa-university payment-icon"></i>
+                                        <div class="payment-details">
+                                            <div class="payment-title">Bank Transfer</div>
+                                            <div class="payment-subtitle">Direct bank transfer</div>
                                         </div>
                                     </div>
                                 </div>
@@ -174,25 +163,25 @@ if ($_POST) {
                         </div>
 
                         <!-- Card Details (shown when card is selected) -->
-                        <div id="card-details" class="mt-6 p-4 bg-gray-50 rounded-lg hidden">
-                            <div class="grid grid-cols-1 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
-                                    <input type="text" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <div id="card-details" class="card-details hidden">
+                            <div class="card-form">
+                                <div class="form-group">
+                                    <label class="form-label">Card Number</label>
+                                    <input type="text" placeholder="1234 5678 9012 3456" class="form-input">
                                 </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
-                                        <input type="text" placeholder="MM/YY" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Expiry Date</label>
+                                        <input type="text" placeholder="MM/YY" class="form-input">
                                     </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
-                                        <input type="text" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <div class="form-group">
+                                        <label class="form-label">CVV</label>
+                                        <input type="text" placeholder="123" class="form-input">
                                     </div>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
-                                    <input type="text" placeholder="John Doe" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <div class="form-group">
+                                    <label class="form-label">Cardholder Name</label>
+                                    <input type="text" placeholder="John Doe" class="form-input">
                                 </div>
                             </div>
                         </div>
@@ -200,28 +189,28 @@ if ($_POST) {
                 </div>
 
                 <!-- Order Summary -->
-                <div class="bg-white rounded-lg shadow-lg p-6 h-fit">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-receipt text-primary"></i>
+                <div class="order-summary">
+                    <h2 class="card-title">
+                        <i class="fas fa-receipt"></i>
                         Order Summary
                     </h2>
                     
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Movie:</span>
-                            <span class="font-medium"><?php echo htmlspecialchars($booking_details['movie_title']); ?></span>
+                    <div class="summary-details">
+                        <div class="summary-item">
+                            <span class="summary-label">Movie:</span>
+                            <span class="summary-value"><?php echo htmlspecialchars($booking_details['movie_title']); ?></span>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Cinema:</span>
-                            <span class="font-medium"><?php echo htmlspecialchars($booking_details['hall_name']); ?></span>
+                        <div class="summary-item">
+                            <span class="summary-label">Cinema:</span>
+                            <span class="summary-value"><?php echo htmlspecialchars($booking_details['hall_name']); ?></span>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Date & Time:</span>
-                            <span class="font-medium"><?php echo date('M d', strtotime($booking_details['date'])) . ' • ' . $booking_details['time']; ?></span>
+                        <div class="summary-item">
+                            <span class="summary-label">Date & Time:</span>
+                            <span class="summary-value"><?php echo date('M d', strtotime($booking_details['date'])) . ' • ' . $booking_details['time']; ?></span>
                         </div>
                         
-                        <div class="border-t pt-3 mt-3">
-                            <h4 class="font-medium text-gray-800 mb-2">Selected Seats:</h4>
+                        <div class="seats-section">
+                            <h4 class="seats-title">Selected Seats:</h4>
                             <?php 
                             $seats_by_row = [];
                             foreach ($selected_seats as $seat) {
@@ -229,43 +218,41 @@ if ($_POST) {
                             }
                             
                             foreach ($seats_by_row as $row => $seats): ?>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span><?php echo implode(', ', array_column($seats, 'id')); ?></span>
-                                <span>Rs. <?php echo number_format(array_sum(array_column($seats, 'price'))); ?></span>
+                            <div class="seat-row">
+                                <span class="seat-numbers"><?php echo implode(', ', array_column($seats, 'id')); ?></span>
+                                <span class="seat-price">Rs. <?php echo number_format(array_sum(array_column($seats, 'price'))); ?></span>
                             </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
 
-                    <div class="border-t pt-4 mt-4 space-y-2">
-                        <div class="flex justify-between text-sm">
+                    <div class="price-breakdown">
+                        <div class="price-item">
                             <span>Subtotal:</span>
                             <span>Rs. <?php echo number_format($total_amount); ?></span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="price-item">
                             <span>Service Fee:</span>
                             <span>Rs. <?php echo number_format($service_fee); ?></span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="price-item">
                             <span>Tax (8%):</span>
                             <span>Rs. <?php echo number_format($tax_amount); ?></span>
                         </div>
-                        <div class="border-t pt-2">
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-semibold text-gray-800">Total:</span>
-                                <span class="text-xl font-bold text-primary">Rs. <?php echo number_format($final_amount); ?></span>
-                            </div>
+                        <div class="total-amount">
+                            <span class="total-label">Total:</span>
+                            <span class="total-price">Rs. <?php echo number_format($final_amount); ?></span>
                         </div>
                     </div>
 
-                    <button type="submit" form="checkout-form" class="w-full bg-primary hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors mt-6 flex items-center justify-center gap-2">
+                    <button type="submit" form="checkout-form" class="complete-payment-btn">
                         <i class="fas fa-lock"></i>
                         Complete Payment
                         <i class="fas fa-arrow-right"></i>
                     </button>
 
-                    <p class="text-xs text-gray-500 text-center mt-3">
-                        <i class="fas fa-shield-alt text-primary"></i>
+                    <p class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
                         Your payment information is secure and encrypted
                     </p>
                         </form>
@@ -273,22 +260,7 @@ if ($_POST) {
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
-            const cardDetails = document.getElementById('card-details');
-
-            paymentMethods.forEach(method => {
-                method.addEventListener('change', function() {
-                    if (this.value === 'card') {
-                        cardDetails.classList.remove('hidden');
-                    } else {
-                        cardDetails.classList.add('hidden');
-                    }
-                });
-            });
-        });
-    </script>
+    
+    <?php include 'partial/footer.php'; ?>
 </body>
 </html>

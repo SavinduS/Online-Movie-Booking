@@ -1,0 +1,346 @@
+/* CSS Variables for easy customization */
+:root {
+    --primary-color: #b793d2;
+    --primary-hover: #9575b8;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-light: #9ca3af;
+    --bg-primary: #f9fafb;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --border-hover: #d1d5db;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --border-radius: 0.5rem;
+    --transition: all 0.2s ease-in-out;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Layout */
+.container {
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.content-wrapper {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Card Components */
+.card,
+.header-card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Header */
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+.back-button:hover {
+    color: var(--primary-hover);
+    background-color: #f3e8ff;
+}
+
+.movie-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.subtitle i {
+    color: var(--primary-color);
+}
+
+/* Form */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-title i {
+    color: var(--primary-color);
+}
+
+/* Date Selection */
+.date-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .date-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .date-grid {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+.date-option {
+    cursor: pointer;
+}
+
+.date-option input[type="radio"] {
+    display: none;
+}
+
+.date-card {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.date-option:hover .date-card {
+    border-color: var(--primary-color);
+}
+
+.date-option input:checked + .date-card {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.day-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.date-display {
+    font-size: 0.75rem;
+}
+
+.today-label {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+}
+
+.date-option input:checked + .date-card .today-label {
+    color: white;
+}
+
+/* Cinema Hall Selection */
+.hall-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .hall-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.hall-option {
+    cursor: pointer;
+}
+
+.hall-option input[type="radio"] {
+    display: none;
+}
+
+.hall-card {
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.hall-option:hover .hall-card {
+    border-color: var(--primary-color);
+}
+
+.hall-option input:checked + .hall-card {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.hall-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.hall-content i {
+    font-size: 1.125rem;
+}
+
+.hall-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.hall-location {
+    font-size: 0.875rem;
+    opacity: 0.75;
+}
+
+/* Time Selection */
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .time-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .time-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.time-option {
+    cursor: pointer;
+}
+
+.time-option input[type="radio"] {
+    display: none;
+}
+
+.time-card {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.time-option:hover .time-card {
+    border-color: var(--primary-color);
+}
+
+.time-option input:checked + .time-card {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.time-display {
+    font-weight: 600;
+}
+
+/* Continue Button */
+.continue-button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.continue-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.continue-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .content-wrapper {
+        padding: 0 0.5rem;
+    }
+    
+    .card,
+    .header-card {
+        padding: 1rem;
+    }
+    
+    .movie-title {
+        font-size: 1.25rem;
+    }
+    
+    .section-title {
+        font-size: 1.125rem;
+    }
+}
+
+/* Focus States for Accessibility */
+.date-option input:focus + .date-card,
+.hall-option input:focus + .hall-card,
+.time-option input:focus + .time-card {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.back-button:focus,
+.continue-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
