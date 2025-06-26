@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    // User not logged in, redirect to login page
+    header("Location: Login_index.php");
+    exit();
+}
+
 // Sample data - replace with your database queries
 $movie_title = $_GET['movie_title'] ?? "Sample Movie";
 

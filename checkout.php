@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    // User not logged in, redirect to login page
+    header("Location: Login_index.php");
+    exit();
+}
+
 // Check if booking details and selected seats exist
 if (!isset($_SESSION['booking_details']) || !isset($_SESSION['selected_seats'])) {
     header('Location: booking.php');

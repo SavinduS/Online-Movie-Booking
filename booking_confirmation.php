@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    // User not logged in, redirect to login page
+    header("Location: Login_index.php");
+    exit();
+}
+
 // Check if booking confirmation exists
 if (!isset($_SESSION['booking_confirmation'])) {
     header('Location: booking.php');
