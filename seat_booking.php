@@ -21,23 +21,23 @@ $reserved_seats = [];
 $hall = $connection->real_escape_string($booking_details['hall_name']);
 $date = $connection->real_escape_string($booking_details['date']);
 $time = $connection->real_escape_string($booking_details['time']);
+$movie = $connection->real_escape_string($booking_details['movie_title']); 
 
 $sql = "SELECT selected_seats FROM bookings 
         WHERE hall_name = '$hall' 
         AND show_date = '$date' 
-        AND show_time = '$time'";
+        AND show_time = '$time' 
+        AND movie_title = '$movie'"; 
 
 $result = $connection->query($sql);
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Handle both JSON and comma-separated formats
         $seats_data = $row['selected_seats'];
-        
+
         // Try to decode as JSON first
         $json_seats = json_decode($seats_data, true);
         if (json_last_error() === JSON_ERROR_NONE && is_array($json_seats)) {
-            // If it's JSON, extract seat IDs
             foreach ($json_seats as $seat) {
                 if (is_array($seat) && isset($seat['id'])) {
                     $reserved_seats[] = $seat['id'];
@@ -54,6 +54,7 @@ if ($result && $result->num_rows > 0) {
         }
     }
 }
+
 
 // Unavailable seats 
 $unavailable_seats = ['G1', 'F1', 'F2', 'E6', 'E7'];

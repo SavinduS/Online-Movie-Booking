@@ -66,9 +66,10 @@ if ($connection) {
                      alt="<?php echo htmlspecialchars($movie['title']); ?>" 
                      class="movie-poster-savi" loading="lazy" />
                 <div class="poster-overlay-savi">
-                  <a href="booking.php?movie_id=<?php echo $movie['id']; ?>" class="book-now-btn-savi" style="text-decoration: none;">
+                  <a href="booking.php?movie_id=<?php echo $movie['id']; ?>&movie_title=<?php echo urlencode($movie['title']); ?>" class="book-now-btn-savi" style="text-decoration: none;">
                     <i class="fas fa-ticket-alt"></i> Book Now
                   </a>
+
                 </div>
                 <div class="rating-badge-savi">
                   <i class="fas fa-star"></i>
@@ -84,9 +85,10 @@ if ($connection) {
                 </div>
 
                 <div class="movie-actions-savi">
-                  <a href="booking.php?movie_id=<?php echo $movie['id']; ?>" class="btn-primary-savi book-ticket-btn-savi" style="text-decoration: none;">
+                  <a href="booking.php?movie_id=<?php echo $movie['id']; ?>&movie_title=<?php echo urlencode($movie['title']); ?>" class="btn-primary-savi book-ticket-btn-savi" style="text-decoration: none;">
                     <i class="fas fa-calendar-alt"></i> Book Tickets
                   </a>
+
                   <a href="movie_details.php?movie_id=<?php echo $movie['id']; ?>" class="btn-secondary-savi view-details-btn-savi" style="text-decoration: none;">
                     <i class="fas fa-info-circle"></i> Details
                   </a>

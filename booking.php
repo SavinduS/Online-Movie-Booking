@@ -2,7 +2,6 @@
 session_start();
 
 // Sample data - replace with your database queries
-$movie_id = $_GET['movie_id'] ?? 1;
 $movie_title = $_GET['movie_title'] ?? "Sample Movie";
 
 $film_halls = [
