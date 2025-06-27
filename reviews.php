@@ -3,10 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-    const loggedInEmail = <?php echo isset($_SESSION['user_email']) ? json_encode($_SESSION['user_email']) : 'null'; ?>;
-</script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swans Cinema | Reviews</title>
@@ -230,43 +226,6 @@
             overflow: hidden;
         }
 
-        .edit-btn-savi,
-        .delete-btn-savi {
-            padding: 6px 14px;
-            margin: 5px 4px 0 0;
-            font-size: 14px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-        }
-
-        /* Edit button - lavender themed */
-        .edit-btn-savi {
-            background-color: #d9b3ff;
-            color: #4b0082;
-        }
-
-        .edit-btn-savi:hover {
-            background-color: #c799f0;
-            box-shadow: 0 0 8px rgba(147, 112, 219, 0.4);
-        }
-
-        /* Delete button - soft red theme */
-        .delete-btn-savi {
-            background-color: #fddede;
-            color: #b30000;
-        }
-
-        .delete-btn-savi:hover {
-            background-color: #fbbbbb;
-            box-shadow: 0 0 8px rgba(255, 0, 0, 0.2);
-        }
-
         .review-card-savi::before {
             content: '';
             position: absolute;
@@ -328,6 +287,48 @@
             font-size: 0.85rem;
             margin-top: 10px;
             text-align: right;
+        }
+
+        .review-actions-savi {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn-savi,
+        .delete-btn-savi {
+            padding: 6px 14px;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        /* Edit button - lavender themed */
+        .edit-btn-savi {
+            background-color: #d9b3ff;
+            color: #4b0082;
+        }
+
+        .edit-btn-savi:hover {
+            background-color: #c799f0;
+            box-shadow: 0 0 8px rgba(147, 112, 219, 0.4);
+        }
+
+        /* Delete button - soft red theme */
+        .delete-btn-savi {
+            background-color: #fddede;
+            color: #b30000;
+        }
+
+        .delete-btn-savi:hover {
+            background-color: #fbbbbb;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.2);
         }
 
         /* Form Section */
@@ -401,6 +402,12 @@
             box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.1);
         }
 
+        .input-savi:disabled, .textarea-savi:disabled, .select-savi:disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+        }
+
         .textarea-savi {
             resize: vertical;
             min-height: 120px;
@@ -430,21 +437,86 @@
             transform: translateY(0);
         }
 
-        .error-message-savi {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
+        .btn-savi:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
-        .success-message-savi {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
+        .login-notice-savi {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8e8ff 100%);
+            border-radius: 15px;
+            border: 2px dashed #9370db;
+        }
+
+        .login-notice-savi h3 {
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .login-notice-savi p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .login-btn-savi {
+            background: linear-gradient(135deg, #9370db, #dda0dd);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn-savi:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(147, 112, 219, 0.3);
+        }
+
+        .existing-review-notice-savi {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 20px;
             border-radius: 10px;
-            margin-top: 20px;
-            border: 1px solid #c3e6cb;
-            display: none;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .existing-review-notice-savi h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .existing-review-notice-savi p {
+            margin-bottom: 15px;
+        }
+
+        .view-review-btn-savi {
+            background: #856404;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* Modal Styles for Edit Form */
@@ -609,6 +681,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Alert Container -->
     <div id="alertContainer-savi"></div>
@@ -668,138 +741,233 @@
             <h2 class="form-title-savi">
                 <i class="fas fa-pen-alt"></i> Share Your Experience
             </h2>
-            
-            <form class="form-savi" id="reviewForm-savi" novalidate>
-                <div class="form-group-savi">
-                    <label for="name-savi" class="label-savi">
-                        <i class="fas fa-user"></i> Full Name
-                    </label>
-                    <input type="text" id="name-savi" name="name" class="input-savi" required>
-                    <div class="error-message-savi" id="nameError-savi"></div>
-                </div>
 
-                <div class="form-group-savi">
-                    <label for="email-savi" class="label-savi">
-                        <i class="fas fa-envelope"></i> Email Address
-                    </label>
-                    <input type="email" id="email-savi" name="email" class="input-savi" required>
-                    <div class="error-message-savi" id="emailError-savi"></div>
-                </div>
-
-                <div class="form-group-savi">
-                    <label for="rating-savi" class="label-savi">
-                        <i class="fas fa-star"></i> Rating
-                    </label>
-                    <select id="rating-savi" name="rating" class="select-savi" required>
-                        <option value="">Select Rating</option>
-                        <option value="5">5 Stars - Excellent</option>
-                        <option value="4">4 Stars - Very Good</option>
-                        <option value="3">3 Stars - Good</option>
-                        <option value="2">2 Stars - Fair</option>
-                        <option value="1">1 Star - Poor</option>
-                    </select>
-                    <div class="error-message-savi" id="ratingError-savi"></div>
-                </div>
-
-                <div class="form-group-savi full-width-savi">
-                    <label for="comment-savi" class="label-savi">
-                        <i class="fas fa-comment"></i> Your Review
-                    </label>
-                    <textarea id="comment-savi" name="comment" class="textarea-savi" placeholder="Share your experience with us..." required></textarea>
-                    <div class="error-message-savi" id="commentError-savi"></div>
-                </div>
-
-                <div class="form-group-savi full-width-savi">
-                    <button type="submit" class="btn-savi" id="submitBtn-savi">
-                        <i class="fas fa-paper-plane"></i> Submit Review
-                    </button>
-                </div>
-            </form>
+            <!-- Form container that will be dynamically updated -->
+            <div id="reviewFormContainer-savi">
+                <!-- Form content will be loaded here based on user status -->
+            </div>
         </div>
+
+        <!-- Edit Review Modal -->
+        <div id="editModal-savi" class="modal-savi">
+    <div class="modal-content-savi">
+        <span class="close-savi" onclick="closeEditModal()">&times;</span>
+        <h2 class="form-title-savi">
+            <i class="fas fa-edit"></i> Edit Review
+        </h2>
+        
+        <form class="form-savi" id="editForm-savi" novalidate>
+            <input type="hidden" id="editId-savi" name="id">
+            
+            <!-- ADD THIS NAME FIELD -->
+            <div class="form-group-savi">
+                <label for="editName-savi" class="label-savi">
+                    <i class="fas fa-user"></i> Full Name
+                </label>
+                <input type="text" id="editName-savi" name="name" class="input-savi" required>
+            </div>
+            
+            <div class="form-group-savi">
+                <label for="editRating-savi" class="label-savi">
+                    <i class="fas fa-star"></i> Rating
+                </label>
+                <select id="editRating-savi" name="rating" class="select-savi" required>
+                    <option value="">Select Rating</option>
+                    <option value="5">5 Stars - Excellent</option>
+                    <option value="4">4 Stars - Very Good</option>
+                    <option value="3">3 Stars - Good</option>
+                    <option value="2">2 Stars - Fair</option>
+                    <option value="1">1 Star - Poor</option>
+                </select>
+            </div>
+
+            <div class="form-group-savi full-width-savi">
+                <label for="editComment-savi" class="label-savi">
+                    <i class="fas fa-comment"></i> Your Review
+                </label>
+                <textarea id="editComment-savi" name="comment" class="textarea-savi" required></textarea>
+            </div>
+
+            <div class="form-group-savi full-width-savi">
+                <button type="submit" class="btn-savi">
+                    <i class="fas fa-save"></i> Update Review
+                </button>
+            </div>
+        </form>
     </div>
-
-    <!-- Edit Review Modal -->
-    <div id="editModal-savi" class="modal-savi">
-        <div class="modal-content-savi">
-            <span class="close-savi" onclick="closeEditModal()">&times;</span>
-            <h2 class="form-title-savi">
-                <i class="fas fa-edit"></i> Edit Review
-            </h2>
-            
-            <form class="form-savi" id="editForm-savi" novalidate>
-                <input type="hidden" id="editId-savi" name="id">
-                
-                <div class="form-group-savi">
-                    <label for="editName-savi" class="label-savi">
-                        <i class="fas fa-user"></i> Full Name
-                    </label>
-                    <input type="text" id="editName-savi" name="name" class="input-savi" required>
-                </div>
-
-                <div class="form-group-savi">
-                    <label for="editEmail-savi" class="label-savi">
-                        <i class="fas fa-envelope"></i> Email Address
-                    </label>
-                    <input type="email" id="editEmail-savi" name="email" class="input-savi" required>
-                </div>
-
-                <div class="form-group-savi">
-                    <label for="editRating-savi" class="label-savi">
-                        <i class="fas fa-star"></i> Rating
-                    </label>
-                    <select id="editRating-savi" name="rating" class="select-savi" required>
-                        <option value="">Select Rating</option>
-                        <option value="5">5 Stars - Excellent</option>
-                        <option value="4">4 Stars - Very Good</option>
-                        <option value="3">3 Stars - Good</option>
-                        <option value="2">2 Stars - Fair</option>
-                        <option value="1">1 Star - Poor</option>
-                    </select>
-                </div>
-
-                <div class="form-group-savi full-width-savi">
-                    <label for="editComment-savi" class="label-savi">
-                        <i class="fas fa-comment"></i> Your Review
-                    </label>
-                    <textarea id="editComment-savi" name="comment" class="textarea-savi" required></textarea>
-                </div>
-
-                <div class="form-group-savi full-width-savi">
-                    <button type="submit" class="btn-savi">
-                        <i class="fas fa-save"></i> Update Review
-                    </button>
-                </div>
-            </form>
-        </div>
+</div>
     </div>
 
     <?php include("partial/footer.php"); ?>
 
     <script>
         // Global variables
-        let currentEditId = null;
+        let currentUser = null;
+        let userHasReview = false;
+        let userReview = null;
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
+            checkUserStatus();
             loadReviews();
-            setupEventListeners();
         });
 
-        // Setup event listeners
-        function setupEventListeners() {
-            // Add review form submission
-            document.getElementById('reviewForm-savi').addEventListener('submit', handleAddReview);
+        // Check user login status and load appropriate form
+        function checkUserStatus() {
+            console.log('Checking user status...');
             
-            // Edit review form submission
-            document.getElementById('editForm-savi').addEventListener('submit', handleEditReview);
+            fetch('review_api.php?action=check_login')
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('API Response:', data);
+                    
+                    if (data.success) {
+                        currentUser = data.logged_in ? {
+                            name: data.user_name,
+                            email: data.user_email
+                        } : null;
+                        
+                        console.log('Current user:', currentUser);
+                        
+                        if (currentUser) {
+                            console.log('User is logged in, checking for existing review...');
+                            checkUserReview();
+                        } else {
+                            console.log('User is not logged in, showing login form...');
+                            displayLoginForm();
+                        }
+                    } else {
+                        console.error('API returned success: false');
+                        displayLoginForm();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking user status:', error);
+                    displayLoginForm();
+                });
+        }
+
+        // Check if user has existing review
+        function checkUserReview() {
+            fetch('review_api.php?action=get_user_review')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        userHasReview = data.has_review;
+                        userReview = data.review || null;
+                        
+                        if (userHasReview) {
+                            displayExistingReviewNotice();
+                        } else {
+                            displayReviewForm();
+                        }
+                    } else {
+                        displayReviewForm();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking user review:', error);
+                    displayReviewForm();
+                });
+        }
+
+        // Display login form for non-logged users
+        function displayLoginForm() {
+            const container = document.getElementById('reviewFormContainer-savi');
+            container.innerHTML = `
+                <div class="login-notice-savi">
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
+                    <p>You must be logged in to submit a review and share your experience with us.</p>
+                    <a href="Login_index.php" class="login-btn-savi">
+                        <i class="fas fa-sign-in-alt"></i> Login to Submit Review
+                    </a>
+                </div>
+            `;
+        }
+
+        // Display review form for logged users without existing review
+        function displayReviewForm() {
+            const container = document.getElementById('reviewFormContainer-savi');
+            const safeName = currentUser && currentUser.name ? escapeHtml(currentUser.name) : 'User';
+            const safeEmail = currentUser && currentUser.email ? escapeHtml(currentUser.email) : '';
             
-            // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
-                const modal = document.getElementById('editModal-savi');
-                if (event.target === modal) {
-                    closeEditModal();
-                }
+            container.innerHTML = `
+                <form class="form-savi" id="reviewForm-savi" novalidate>
+                    <div class="form-group-savi">
+                    <label for="name-savi" class="label-savi">
+                        <i class="fas fa-user"></i> Full Name
+                    </label>
+                    <input type="text" id="name-savi" name="name" class="input-savi" value="${safeName === 'User' ? '' : safeName}" placeholder="Enter your full name" required>
+                </div>
+
+                    <div class="form-group-savi">
+                        <label for="email-savi" class="label-savi">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="email-savi" name="email" class="input-savi" value="${safeEmail}" disabled>
+                    </div>
+
+                    <div class="form-group-savi">
+                        <label for="rating-savi" class="label-savi">
+                            <i class="fas fa-star"></i> Rating
+                        </label>
+                        <select id="rating-savi" name="rating" class="select-savi" required>
+                            <option value="">Select Rating</option>
+                            <option value="5">5 Stars - Excellent</option>
+                            <option value="4">4 Stars - Very Good</option>
+                            <option value="3">3 Stars - Good</option>
+                            <option value="2">2 Stars - Fair</option>
+                            <option value="1">1 Star - Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-savi full-width-savi">
+                        <label for="comment-savi" class="label-savi">
+                            <i class="fas fa-comment"></i> Your Review
+                        </label>
+                        <textarea id="comment-savi" name="comment" class="textarea-savi" placeholder="Share your experience with us..." required></textarea>
+                    </div>
+
+                    <div class="form-group-savi full-width-savi">
+                        <button type="submit" class="btn-savi" id="submitBtn-savi">
+                            <i class="fas fa-paper-plane"></i> Submit Review
+                        </button>
+                    </div>
+                </form>
+            `;
+            
+            setupReviewFormSubmission();
+        }
+
+        // Display notice for users who already have a review
+        function displayExistingReviewNotice() {
+            const container = document.getElementById('reviewFormContainer-savi');
+            const reviewDate = new Date(userReview.created_at).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
             });
+            
+            container.innerHTML = `
+                <div class="existing-review-notice-savi">
+                    <h4><i class="fas fa-check-circle"></i> You have already submitted a review!</h4>
+                    <p>You submitted your review on ${reviewDate}. You can edit or delete your existing review if needed.</p>
+                    <button onclick="scrollToUserReview()" class="view-review-btn-savi">
+                        <i class="fas fa-eye"></i> View My Review
+                    </button>
+                </div>
+            `;
+        }
+
+        // Setup review form submission
+        function setupReviewFormSubmission() {
+            const form = document.getElementById('reviewForm-savi');
+            if (form) {
+                form.addEventListener('submit', handleAddReview);
+            }
         }
 
         // Load all reviews
@@ -852,12 +1020,26 @@
                     day: 'numeric'
                 });
 
+                const actionButtons = review.is_owner ? `
+                    <div class="review-actions-savi">
+                        <button onclick="editReview(${review.id})" class="edit-btn-savi">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button onclick="deleteReview(${review.id})" class="delete-btn-savi">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </div>
+                ` : '';
+
                 return `
-                    <div class="review-card-savi">
+                    <div class="review-card-savi" ${review.is_owner ? 'id="userReview-savi"' : ''}>
                         <div class="reviewer-info-savi">
                             <div class="reviewer-avatar-savi">${initials}</div>
                             <div>
-                                <div class="reviewer-name-savi">${escapeHtml(review.name)}</div>
+                                <div class="reviewer-name-savi">
+                                    ${escapeHtml(review.name)}
+                                    ${review.is_owner ? '<i class="fas fa-crown" style="color: #ffc107; margin-left: 8px;" title="Your Review"></i>' : ''}
+                                </div>
                                 <div class="rating-savi">${stars}</div>
                             </div>
                         </div>
@@ -865,14 +1047,7 @@
                             "${escapeHtml(review.comment)}"
                         </div>
                         <div class="review-date-savi">${reviewDate}</div>
-                        <div class="review-actions-savi" style="margin-top: 15px;">
-                            <button onclick="editReview(${review.id})" class="edit-btn-savi">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button onclick="deleteReview(${review.id})" class="delete-btn-savi">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
-                        </div>
+                        ${actionButtons}
                     </div>
                 `;
             }).join('');
@@ -882,33 +1057,44 @@
         function handleAddReview(e) {
             e.preventDefault();
             
-            const formData = new FormData(e.target);
-            const submitBtn = document.getElementById('submitBtn-savi');
+            const submitBtn = document.getElementById("submitBtn-savi");
+            const reviewForm = document.getElementById("reviewForm-savi");
+
+            if (!submitBtn || !reviewForm) {
+                return;
+            }
             
-            // Disable submit button
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            
+
+            const formData = new FormData(reviewForm);
+
             fetch('review_api.php?action=add', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                    return;
+                }
+
                 if (data.success) {
                     showAlert('Review submitted successfully!', 'success');
-                    document.getElementById('reviewForm-savi').reset();
-                    loadReviews(); // Reload reviews
+                    reviewForm.reset();
+                    loadReviews();
+                    userHasReview = true;
+                    checkUserReview();
                 } else {
                     showAlert(data.message || 'Error submitting review', 'error');
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                showAlert('Error submitting review', 'error');
+                console.error("Submission failed:", error);
+                showAlert('An unexpected error occurred', 'error');
             })
             .finally(() => {
-                // Re-enable submit button
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Review';
             });
@@ -916,57 +1102,53 @@
 
         // Edit review function
         function editReview(id) {
-            fetch(`review_api.php?action=get_single&id=${id}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const review = data.review;
-                        
-                        // Populate edit form
-                        document.getElementById('editId-savi').value = review.id;
-                        document.getElementById('editName-savi').value = review.name;
-                        document.getElementById('editEmail-savi').value = review.email;
-                        document.getElementById('editRating-savi').value = review.rating;
-                        document.getElementById('editComment-savi').value = review.comment;
-                        
-                        // Show modal
-                        document.getElementById('editModal-savi').style.display = 'block';
-                        currentEditId = id;
-                    } else {
-                        showAlert('Error loading review data', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showAlert('Error loading review data', 'error');
-                });
-        }
-
-        // Handle edit review form submission
-        function handleEditReview(e) {
-            e.preventDefault();
+    console.log('Editing review ID:', id);
+    
+    fetch(`review_api.php?action=get_single&id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Edit review response:', data);
             
-            const formData = new FormData(e.target);
-            
-            fetch('review_api.php?action=update', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showAlert('Review updated successfully!', 'success');
-                    closeEditModal();
-                    loadReviews(); // Reload reviews
-                } else {
-                    showAlert(data.message || 'Error updating review', 'error');
+            if (data.success) {
+                const review = data.review;
+                
+                if (!review.is_owner) {
+                    showAlert('You can only edit your own reviews', 'error');
+                    return;
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showAlert('Error updating review', 'error');
-            });
-        }
+                
+                // Populate edit form - ADD NAME FIELD
+                document.getElementById('editId-savi').value = review.id;
+                document.getElementById('editName-savi').value = review.name;  // ADD THIS LINE
+                document.getElementById('editRating-savi').value = review.rating;
+                document.getElementById('editComment-savi').value = review.comment;
+                
+                console.log('Form populated with:', {
+                    id: review.id,
+                    name: review.name,    // ADD THIS
+                    rating: review.rating,
+                    comment: review.comment
+                });
+                
+                // Setup event listener
+                const editForm = document.getElementById('editForm-savi');
+                if (editForm) {
+                    editForm.removeEventListener('submit', handleEditReview);
+                    editForm.addEventListener('submit', handleEditReview);
+                    console.log('Edit form event listener attached');
+                }
+                
+                document.getElementById('editModal-savi').style.display = 'block';
+            } else {
+                showAlert('Error loading review data: ' + (data.message || 'Unknown error'), 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading review:', error);
+            showAlert('Error loading review data', 'error');
+        });
+}
+        
 
         // Delete review function
         function deleteReview(id) {
@@ -985,7 +1167,10 @@
             .then(data => {
                 if (data.success) {
                     showAlert('Review deleted successfully!', 'success');
-                    loadReviews(); // Reload reviews
+                    loadReviews();
+                    userHasReview = false;
+                    userReview = null;
+                    displayReviewForm();
                 } else {
                     showAlert(data.message || 'Error deleting review', 'error');
                 }
@@ -1000,7 +1185,22 @@
         function closeEditModal() {
             document.getElementById('editModal-savi').style.display = 'none';
             document.getElementById('editForm-savi').reset();
-            currentEditId = null;
+        }
+
+        // Scroll to user's review
+        function scrollToUserReview() {
+            const userReviewElement = document.getElementById('userReview-savi');
+            if (userReviewElement) {
+                userReviewElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                userReviewElement.style.boxShadow = '0 0 20px rgba(147, 112, 219, 0.5)';
+                setTimeout(() => {
+                    userReviewElement.style.boxShadow = '';
+                }, 3000);
+            }
         }
 
         // Show alert message
@@ -1018,7 +1218,6 @@
             
             alertContainer.innerHTML = alertHtml;
             
-            // Auto remove after 5 seconds
             setTimeout(() => {
                 alertContainer.innerHTML = '';
             }, 5000);
@@ -1026,6 +1225,7 @@
 
         // Escape HTML to prevent XSS
         function escapeHtml(text) {
+            if (!text) return '';
             const map = {
                 '&': '&amp;',
                 '<': '&lt;',
@@ -1035,6 +1235,79 @@
             };
             return text.replace(/[&<>"']/g, function(m) { return map[m]; });
         }
+
+        // Handle edit review form submission
+function handleEditReview(e) {
+    e.preventDefault();
+    console.log('Handling edit review submission');
+    
+    const formData = new FormData(e.target);
+    
+    // Debug: Log form data
+    console.log('Form data being sent:');
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+    
+    // Disable submit button
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+    
+    fetch('review_api.php?action=update', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log('Update response status:', response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Update response data:', data);
+        
+        if (data.success) {
+            showAlert('Review updated successfully!', 'success');
+            closeEditModal();
+            loadReviews();
+            checkUserReview();
+        } else {
+            showAlert(data.message || 'Error updating review', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating review:', error);
+        showAlert('Error updating review', 'error');
+    })
+    .finally(() => {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    });
+}
+        // Setup edit form submission when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+    // Setup edit form submission (the form exists in HTML)
+    const editForm = document.getElementById('editForm-savi');
+    if (editForm) {
+        editForm.addEventListener('submit', handleEditReview);
+        console.log('Edit form event listener attached successfully');
+    } else {
+        console.error('Edit form not found - check if editForm-savi exists in HTML');
+    }
+    
+    // Initialize page
+    checkUserStatus();
+    loadReviews();
+});
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('editModal-savi');
+            if (event.target === modal) {
+                closeEditModal();
+            }
+        });
 
         // Hero stats animation
         function animateStats() {

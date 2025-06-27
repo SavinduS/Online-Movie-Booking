@@ -15,14 +15,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         if (password_verify($password, $user['password'])) {
+            // Clear any existing session data
+            session_unset();
+            
+            // Set session variables
             $_SESSION['user_id'] = $user["id"];
-            $_SESSION['user_name'] = $user["name"];
+            $_SESSION['user_name'] = $user["name"] ?? $user["username"] ?? 'User'; // Handle different column names
+            $_SESSION['user_email'] = $user["email"];
             $_SESSION['role'] = $user["role"];
+            
+            // Debug: Log what we're setting
+            error_log("LOGIN DEBUG - Setting session:");
+            error_log("user_id: " . $user["id"]);
+            error_log("user_name: " . ($user["name"] ?? $user["username"] ?? 'User'));
+            error_log("user_email: " . $user["email"]);
+            error_log("role: " . $user["role"]);
 
             if ($user["role"] == "admin") {
                 header("Location: admin_dashboard.php");
             } else {
-                header("Location: UserProfile.php");
+                header("Location: index.php");
             }
             exit();
         } else {
