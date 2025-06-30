@@ -193,11 +193,12 @@ try {
 
     <!-- Dashboard Grid -->
     <div class="dashboard-grid">
+    
         <!-- Recent Bookings -->
         <div class="dashboard-section">
             <div class="section-header">
                 <h2><i class="fas fa-clock"></i> Recent Bookings</h2>
-                <a href="admin_bookings.php" class="view-all">View All</a>
+                <a href="admin_bookings.php" class="view-all">View All</a>            
             </div>
             
             <?php if (empty($recent_bookings)): ?>

@@ -337,6 +337,8 @@ body {
     font-weight: 500;
     font-size: 0.9rem;
     padding: 8px 15px;
+    margin-left: auto;
+    display: inline-block;
     border-radius: 20px;
     border: 2px solid var(--lavender-light);
     transition: var(--transition);
