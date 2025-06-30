@@ -1,6 +1,10 @@
 <?php
+include 'auth_check.php';
 include 'database/db.php';
-session_start();
+
+// Check if user is admin
+checkAdminAuth();
+
 
 // Handle message
 $message = $_SESSION['message'] ?? '';
@@ -156,16 +160,11 @@ if ($revenue_result && $row = $revenue_result->fetch_assoc()) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Bookings - Movie Theater Management</title>
-    <link rel="stylesheet" href="css/admin_bookings.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+<?php
+$page_title = "Manage Bookings - Movie Theater Management";
+include 'partial/header.php';
+?>
+<link rel="stylesheet" href="css/admin_bookings.css">
     <div class="container">
         <!-- Header -->
         <div class="page-header">
@@ -504,5 +503,5 @@ if ($revenue_result && $row = $revenue_result->fetch_assoc()) {
             });
         });
     </script>
-</body>
-</html>
+
+<?php include 'partial/footer.php'; ?>

@@ -1,27 +1,62 @@
 <?php
 include 'database/db.php';
+include 'auth_check.php';
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+// Check if user is admin
+checkAdminAuth();
 
-    // Delete thumbnail from server
-    $getQuery = "SELECT thumbnail FROM movies WHERE id = ?";
-    $getStmt = $connection->prepare($getQuery);
-    $getStmt->bind_param("i", $id);
-    $getStmt->execute();
-    $getResult = $getStmt->get_result();
-    $movie = $getResult->fetch_assoc();
-    if ($movie && file_exists($movie['thumbnail'])) {
-        unlink($movie['thumbnail']);
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = (int)$_GET['id'];
+    
+    try {
+        // First, get the image path to delete the file
+        $image_query = "SELECT image FROM films WHERE id = ?";
+        $image_stmt = $connection->prepare($image_query);
+        $image_stmt->bind_param("i", $id);
+        $image_stmt->execute();
+        $image_result = $image_stmt->get_result();
+        
+        $image_path = '';
+        if ($image_row = $image_result->fetch_assoc()) {
+            $image_path = $image_row['image'];
+        }
+        $image_stmt->close();
+        
+        // Delete the movie from database
+        $sql = "DELETE FROM films WHERE id = ?";
+        $stmt = $connection->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param("i", $id);
+            
+            if ($stmt->execute()) {
+                // Delete the image file if it exists
+                if (!empty($image_path) && file_exists($image_path)) {
+                    unlink($image_path);
+                }
+                
+                $_SESSION['message'] = "Movie deleted successfully!";
+                $_SESSION['message_type'] = "success";
+            } else {
+                $_SESSION['message'] = "Error deleting movie: " . $stmt->error;
+                $_SESSION['message_type'] = "error";
+            }
+            
+            $stmt->close();
+        } else {
+            $_SESSION['message'] = "Database error: " . $connection->error;
+            $_SESSION['message_type'] = "error";
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Error: " . $e->getMessage();
+        $_SESSION['message_type'] = "error";
     }
-
-    // Delete from database
-    $query = "DELETE FROM movies WHERE id = ?";
-    $stmt = $connection->prepare($query);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-
-    header("Location: admin_movies.php");
-    exit();
+} else {
+    $_SESSION['message'] = "Invalid movie ID!";
+    $_SESSION['message_type'] = "error";
 }
+
+// Redirect back to admin movies page
+header("Location: admin_movies.php");
+exit();
 ?>

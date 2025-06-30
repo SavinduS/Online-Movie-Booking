@@ -1,8 +1,14 @@
 <?php
 include 'database/db.php';
+include 'auth_check.php';
 
-$message = '';
-$messageType = '';
+// Check if user is admin
+checkAdminAuth();
+
+// Handle messages from session
+$message = $_SESSION['message'] ?? '';
+$messageType = $_SESSION['message_type'] ?? '';
+unset($_SESSION['message'], $_SESSION['message_type']);
 
 // Fetch all films
 $movies = [];
@@ -15,16 +21,11 @@ if ($result) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Movie Management</title>
-  <link rel="stylesheet" href="css/admin_movies.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+<?php
+$page_title = "Admin - Movie Management";
+include 'partial/header.php';
+?>
+<link rel="stylesheet" href="css/admin_movies.css">
   <div class="container">
     <header class="header">
       <a href="admin_dashboard.php" class="back-btn">
@@ -71,10 +72,12 @@ if ($result) {
                   <i class="fas fa-tag"></i>
                   <?= htmlspecialchars($movie['category']) ?>
                 </span>
+                <?php if (!empty($movie['rating'])): ?>
                 <span class="movie-rating">
                   <i class="fas fa-star"></i>
                   <?= htmlspecialchars($movie['rating']) ?>/10
                 </span>
+                <?php endif; ?>
                 <span class="movie-status">
                   <i class="fas fa-circle"></i>
                   <?= htmlspecialchars($movie['status']) ?>
@@ -153,7 +156,7 @@ if ($result) {
         <div class="form-group">
           <label for="image"><i class="fas fa-image"></i> Movie Image:</label>
           <input type="file" id="image" name="image" accept="image/*">
-          <small>Supported formats: JPG, PNG, GIF (Max: 5MB)</small>
+          <small>Supported formats: JPG, PNG, GIF, WebP (Max: 5MB)</small>
         </div>
 
         <div class="form-actions">
@@ -245,7 +248,7 @@ if ($result) {
       document.getElementById('edit_id').value = movie.id;
       document.getElementById('edit_title').value = movie.title;
       document.getElementById('edit_category').value = movie.category;
-      document.getElementById('edit_rating').value = movie.rating;
+      document.getElementById('edit_rating').value = movie.rating || '';
       document.getElementById('edit_status').value = movie.status;
       
       // Format date for input field
@@ -276,6 +279,6 @@ if ($result) {
         }, 300);
       }, 5000);
     });
-  </script>
-</body>
-</html>
+      </script>
+
+<?php include 'partial/footer.php'; ?>
