@@ -421,22 +421,29 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 
             <!-- User Actions for Desktop -->
             <div class="user-actions-savi desktop-user-actions">
-                <?php if ($is_logged_in): ?>
-                    <?php if (!empty($username)): ?>
-                        <span class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</span>
-                    <?php endif; ?>
-                    <a href="UserProfile.php" class="login-btn-savi">
-                        <i class="fas fa-user-circle"></i> Profile
-                    </a>
-                    <a href="logout.php" class="logout-btn-savi">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                <?php else: ?>
-                    <a href="login_index.php" class="login-btn-savi">
-                        <i class="fas fa-user"></i> Login
-                    </a>
-                <?php endif; ?>
-            </div>
+    <?php if ($is_logged_in): ?>
+        <?php if (!empty($username)): ?>
+            <span class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</span>
+        <?php endif; ?>
+        <?php if ($_SESSION['role'] === 'admin'): ?>
+            <a href="admin_dashboard.php" class="login-btn-savi">
+                <i class="fas fa-user-circle"></i> Dashboard
+            </a>
+        <?php else: ?>
+            <a href="UserProfile.php" class="login-btn-savi">
+                <i class="fas fa-user-circle"></i> Profile
+            </a>
+        <?php endif; ?>
+        <a href="logout.php" class="logout-btn-savi">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    <?php else: ?>
+        <a href="login_index.php" class="login-btn-savi">
+            <i class="fas fa-user"></i> Login
+        </a>
+    <?php endif; ?>
+</div>
+
 
             <!-- Mobile Menu Toggle -->
             <label for="mobile-menu-savi" class="mobile-toggle-savi">
