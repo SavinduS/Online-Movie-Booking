@@ -376,3 +376,139 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
+/* ========== Responsive Styles for Mobile (max-width: 768px) ========== */
+@media (max-width: 768px) {
+  /* ========== General Adjustments ========== */
+  .container-savi {
+    padding: 0 15px; /* Slightly reduce side padding */
+  }
+
+  /* ========== Hero Section Adjustments ========== */
+  .hero-content-savi {
+    padding: 0 15px; /* Match container padding */
+  }
+
+  .hero-title-savi {
+    font-size: 2.5rem; /* Drastically reduce font size for mobile */
+    margin-bottom: 15px;
+  }
+
+  .hero-subtitle-savi {
+    font-size: 1rem; /* Reduce subtitle font size */
+    margin-bottom: 30px;
+  }
+
+  /* --- Search Bar Fix --- */
+  .hero-search-savi {
+    margin-bottom: 30px; /* Reduce space below search bar */
+  }
+
+  .search-wrapper-savi {
+    /* Make the search bar flexible instead of fixed width */
+    width: 95%;
+    max-width: 500px; /* Still have a max-width, but it's less important now */
+    border-radius: 30px; /* A slightly smaller radius can look better on mobile */
+    flex-direction: row; /* Ensure it stays a row, but we adjust padding */
+  }
+
+  .hero-search-savi input {
+    padding: 15px 20px 15px 50px; /* Reduce vertical padding */
+    font-size: 14px;
+  }
+
+  .search-btn-savi {
+    padding: 15px 20px; /* Match input padding */
+    font-size: 14px;
+  }
+  
+  .search-icon-savi {
+    left: 18px; /* Adjust icon position for new padding */
+  }
+
+  /* --- Hero Stats Fix --- */
+  .hero-stats-savi {
+    flex-direction: column; /* Stack stats vertically */
+    align-items: center;   /* Center them in the column */
+    gap: 15px;             /* Reduce the gap between items */
+  }
+
+  .stat-item-savi {
+    width: 100%;
+    max-width: 280px;      /* Give stats a max width so they look neat */
+    justify-content: center; /* Center the content within each stat item */
+  }
+
+  /* ========== Category Filter Adjustments ========== */
+  .category-section-savi {
+    padding: 30px 0 15px;
+  }
+  
+  .category-filters-savi {
+    gap: 8px; /* Reduce the gap between filter buttons */
+  }
+
+  .filter-btn-savi {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .filter-title-savi {
+      font-size: 1.4rem;
+  }
+
+  /* ========== Section & Movie Card Adjustments ========== */
+  .section-savi {
+    padding: 40px 0; /* Reduce vertical padding for content sections */
+  }
+
+  .section-header-savi {
+    margin-bottom: 20px;
+  }
+
+  .section-title-savi {
+    font-size: 1.6rem; /* Reduce section title font size */
+  }
+
+  .section-subtitle-savi {
+    font-size: 0.9rem;
+    padding: 0 10px; /* Add a little horizontal padding to prevent text hitting edges */
+  }
+
+  .scroll-container-savi {
+    gap: 15px; /* Reduce the gap between movie cards */
+    padding: 10px 15px; /* Add padding to the start/end of the scroll list */
+  }
+  
+  .scroll-container-wrapper-savi {
+    /* Hides scrollbar for a cleaner look, but still allows scrolling */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scroll-container-wrapper-savi::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .movie-card-savi {
+    width: 180px; /* Slightly reduce card width to fit more on screen */
+    /* Disable hover-only effects on mobile, as they can feel sticky */
+    transform: none !important;
+  }
+  
+  .movie-card-savi:hover {
+      /* Keep a subtle hover effect if on a device that can hover (like an iPad with a mouse) */
+      transform: translateY(-4px) !important;
+  }
+
+  /* On touch devices, the overlay can be distracting or hard to trigger/dismiss.
+     This is an optional improvement to show info more directly.
+     You could also choose to show the overlay on tap. For now, we'll hide it. */
+  .movie-card-savi:hover .movie-overlay-savi {
+      opacity: 0;
+  }
+
+  .movie-title-savi {
+    font-size: 0.9rem;
+  }
+}

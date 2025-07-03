@@ -1,11 +1,15 @@
 <?php
+// Set the page title
+$title = "Swans | Admin Dashboard";
+
+// Include dependencies first
 include 'auth_check.php';
 include 'database/db.php';
 
 // Check if user is admin
 checkAdminAuth();
 
-$page_title = "Admin Dashboard - Movie Theater";
+// Include the header after title is set
 include 'partial/header.php';
 
 // Handle undefined session variables safely

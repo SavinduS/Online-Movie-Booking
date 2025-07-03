@@ -397,62 +397,96 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
                     </a>
                 </li>
 
-                <!-- User Actions for Mobile (shown in mobile menu) -->
-                <li class="nav-item-savi mobile-user-actions" style="display: none;">
-                    <?php if ($is_logged_in): ?>
-                        <?php if (!empty($username)): ?>
-                            <div class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</div>
-                        <?php endif; ?>
-                        <div class="user-actions-savi">
-                            <a href="UserProfile.php" class="login-btn-savi">
-                                <i class="fas fa-user-circle"></i> Profile
-                            </a>
-                            <a href="logout.php" class="logout-btn-savi">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
-                        </div>
-                    <?php else: ?>
-                        <a href="login_index.php" class="login-btn-savi">
-                            <i class="fas fa-user"></i> Login
-                        </a>
-                    <?php endif; ?>
-                </li>
-            </ul>
+   <?php
+// Define the current page filename at the top to use it in both menus
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
 
-            <!-- User Actions for Desktop -->
-            <div class="user-actions-savi desktop-user-actions">
+<!-- User Actions for Mobile (shown in mobile menu) -->
+<li class="nav-item-savi mobile-user-actions" style="display: none;">
+    <?php if ($is_logged_in): ?>
+        
+        <?php if (!empty($username)): ?>
+            <div class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</div>
+        <?php endif; ?>
+
+        <div class="user-actions-savi">
+            <?php if ($_SESSION['role'] === 'admin'): ?>
+                
+                <?php // --- NEW: Check if the current page is the admin dashboard --- ?>
+                <?php if ($current_page == 'admin_dashboard.php'): ?>
+                    <a href="UserProfile.php" class="login-btn-savi">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </a>
+                <?php else: ?>
+                    <a href="admin_dashboard.php" class="login-btn-savi">
+                        <i class="fas fa-user-shield"></i> Dashboard
+                    </a>
+                <?php endif; ?>
+
+            <?php else: ?>
+                <a href="UserProfile.php" class="login-btn-savi">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
+            <?php endif; ?>
+            
+            <a href="logout.php" class="logout-btn-savi">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+
+    <?php else: ?>
+        <a href="Login_index.php" class="login-btn-savi">
+            <i class="fas fa-user"></i> Login
+        </a>
+    <?php endif; ?>
+</li>
+</ul> <!-- Assuming this closes your mobile nav list -->
+
+<!-- User Actions for Desktop -->
+<div class="user-actions-savi desktop-user-actions">
     <?php if ($is_logged_in): ?>
         <?php if (!empty($username)): ?>
             <span class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</span>
         <?php endif; ?>
+
         <?php if ($_SESSION['role'] === 'admin'): ?>
-            <a href="admin_dashboard.php" class="login-btn-savi">
-                <i class="fas fa-user-circle"></i> Dashboard
-            </a>
+            
+            <?php // --- NEW: Check if the current page is the admin dashboard --- ?>
+            <?php if ($current_page == 'admin_dashboard.php'): ?>
+                <a href="UserProfile.php" class="login-btn-savi">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
+            <?php else: ?>
+                <a href="admin_dashboard.php" class="login-btn-savi">
+                    <i class="fas fa-user-shield"></i> Dashboard
+                </a>
+            <?php endif; ?>
+
         <?php else: ?>
             <a href="UserProfile.php" class="login-btn-savi">
                 <i class="fas fa-user-circle"></i> Profile
             </a>
         <?php endif; ?>
+
         <a href="logout.php" class="logout-btn-savi">
             <i class="fas fa-sign-out-alt"></i> Logout
         </a>
     <?php else: ?>
-        <a href="login_index.php" class="login-btn-savi">
+        <a href="Login_index.php" class="login-btn-savi">
             <i class="fas fa-user"></i> Login
         </a>
     <?php endif; ?>
 </div>
 
-
-            <!-- Mobile Menu Toggle -->
-            <label for="mobile-menu-savi" class="mobile-toggle-savi">
-                <div class="hamburger-line-savi"></div>
-                <div class="hamburger-line-savi"></div>
-                <div class="hamburger-line-savi"></div>
-            </label>
-        </div>
-    </nav>
+<!-- Mobile Menu Toggle -->
+<label for="mobile-menu-savi" class="mobile-toggle-savi">
+    <div class="hamburger-line-savi"></div>
+    <div class="hamburger-line-savi"></div>
+    <div class="hamburger-line-savi"></div>
+</label>
+</div> <!-- End of navbar-container -->
+</nav>
 
     <style>
         /* Mobile-specific user actions styling */

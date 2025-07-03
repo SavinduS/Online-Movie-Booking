@@ -11,7 +11,7 @@ function checkAdminAuth() {
     // Check if user is logged in
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
         // User is not logged in, redirect to login
-        header("Location: login_index.php?error=please_login");
+        header("Location: Login_index.php?error=please_login");
         exit();
     }
     
@@ -20,7 +20,7 @@ function checkAdminAuth() {
         // User is not admin, show unauthorized message and redirect
         echo "<script>
                 alert('Access Denied! You do not have permission to access this page.');
-                window.location.href = 'login_index.php';
+                window.location.href = 'Login_index.php';
               </script>";
         exit();
     }
@@ -33,7 +33,7 @@ function checkAdminAuth() {
             session_destroy();
             echo "<script>
                     alert('Your session has expired. Please login again.');
-                    window.location.href = 'login_index.php';
+                    window.location.href = 'Login_index.php';
                   </script>";
             exit();
         }
