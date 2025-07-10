@@ -4,12 +4,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Get current page for active navigation highlighting
+// Get current page once at the top for use everywhere
 $current_page = basename($_SERVER['PHP_SELF']);
 
-// Check if user is logged in
-$is_logged_in = isset($_SESSION['user_id']) || isset($_SESSION['username']) || isset($_SESSION['logged_in']);
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+// Check if user is logged in (checking for user_id is the most reliable method)
+$is_logged_in = isset($_SESSION['user_id']);
+$username = $_SESSION['username'] ?? ''; // Cleaner way to get username if it exists
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             line-height: 1.6;
             background: linear-gradient(135deg, #f8f6ff 0%, #e8e0ff 100%);
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 80px; /* Adjusted to match navbar height + buffer */
         }
 
         /* Navigation Styles */
@@ -60,11 +60,6 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
         }
 
         /* Logo Styles */
-        .logo-savi i {
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
         .logo-savi {
             display: flex;
             align-items: center;
@@ -74,19 +69,13 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             text-decoration: none;
             transition: all 0.3s ease;
         }
-
+        .logo-savi i {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
         .logo-savi:hover {
             transform: translateY(-2px);
             color: #9333ea;
-        }
-
-        .logo-icon-savi {
-            margin-right: 20px;
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, #6b46c1, #9333ea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         /* Navigation Menu */
@@ -96,6 +85,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             margin: 0;
             padding: 0;
             gap: 0;
+            align-items: center; /* Vertically align items */
         }
 
         .nav-item-savi {
@@ -156,8 +146,8 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             gap: 12px;
         }
 
-        /* Login/Logout Button */
-        .login-btn-savi, .logout-btn-savi {
+        /* Buttons */
+        .login-btn-savi, .logout-btn-savi, .profile-btn-savi {
             background: linear-gradient(135deg, #6b46c1, #9333ea);
             color: white;
             padding: 12px 24px;
@@ -172,38 +162,12 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             gap: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+            white-space: nowrap; /* Prevent buttons from wrapping text */
         }
-
-        /* Profile Button */
-        .profile-btn-savi {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
-        }
-
-        .login-btn-savi:hover, .logout-btn-savi:hover {
+        .login-btn-savi:hover, .logout-btn-savi:hover, .profile-btn-savi:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(107, 70, 193, 0.4);
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
         }
-
-        .profile-btn-savi:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
-            background: linear-gradient(135deg, #047857, #059669);
-        }
-
         .login-btn-savi:active, .logout-btn-savi:active, .profile-btn-savi:active {
             transform: translateY(-1px);
         }
@@ -213,7 +177,6 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             background: linear-gradient(135deg, #dc2626, #ef4444);
             box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
-
         .logout-btn-savi:hover {
             background: linear-gradient(135deg, #b91c1c, #dc2626);
             box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
@@ -225,6 +188,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             font-size: 0.9rem;
             font-weight: 500;
             margin-right: 10px;
+            white-space: nowrap;
         }
 
         /* Mobile Menu Toggle */
@@ -236,11 +200,9 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
             border-radius: 4px;
             transition: all 0.3s ease;
         }
-
         .mobile-toggle-savi:hover {
             background: rgba(107, 70, 193, 0.1);
         }
-
         .hamburger-line-savi {
             width: 25px;
             height: 3px;
@@ -254,9 +216,25 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
         .mobile-menu-checkbox-savi {
             display: none;
         }
+        
+        /* --- CSS CONSOLIDATED HERE --- */
+        /* Hiding/Showing elements based on screen size */
+        .desktop-user-actions {
+            display: flex; /* Show by default on desktop */
+        }
+        .mobile-user-actions {
+            display: none; /* Hide by default on desktop */
+        }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .desktop-user-actions {
+                display: none; /* Hide desktop actions on mobile */
+            }
+            .mobile-user-actions {
+                display: block; /* Show mobile actions as a block in the menu */
+            }
+            
             .mobile-toggle-savi {
                 display: flex;
             }
@@ -298,6 +276,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 
             .nav-item-savi {
                 margin: 8px 0;
+                width: 100%;
             }
 
             .nav-link-savi {
@@ -333,19 +312,13 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 
         @media (max-width: 480px) {
             .logo-savi {
-                font-size: 1.3rem;
+                font-size: 24px;
             }
-
-            .logo-icon-savi {
-                font-size: 1.5rem;
-            }
-
             .navbar-container-savi {
                 height: 60px;
             }
-
             body {
-                padding-top: 60px;
+                padding-top: 70px;
             }
         }
 
@@ -397,112 +370,86 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
                     </a>
                 </li>
 
-   <?php
-// Define the current page filename at the top to use it in both menus
-$current_page = basename($_SERVER['PHP_SELF']);
-?>
+                <!-- User Actions for Mobile (shown in mobile menu) -->
+                <li class="nav-item-savi mobile-user-actions">
+                    <?php if ($is_logged_in): ?>
+                        
+                        <?php if (!empty($username)): ?>
+                            <div class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</div>
+                        <?php endif; ?>
 
-<!-- User Actions for Mobile (shown in mobile menu) -->
-<li class="nav-item-savi mobile-user-actions" style="display: none;">
-    <?php if ($is_logged_in): ?>
-        
-        <?php if (!empty($username)): ?>
-            <div class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</div>
-        <?php endif; ?>
+                        <div class="user-actions-savi">
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                                
+                                <?php if ($current_page == 'admin_dashboard.php'): ?>
+                                    <a href="UserProfile.php" class="login-btn-savi">
+                                        <i class="fas fa-user-circle"></i> Profile
+                                    </a>
+                                <?php else: ?>
+                                    <a href="admin_dashboard.php" class="login-btn-savi">
+                                        <i class="fas fa-user-shield"></i> Dashboard
+                                    </a>
+                                <?php endif; ?>
 
-        <div class="user-actions-savi">
-            <?php if ($_SESSION['role'] === 'admin'): ?>
-                
-                <?php // --- NEW: Check if the current page is the admin dashboard --- ?>
-                <?php if ($current_page == 'admin_dashboard.php'): ?>
-                    <a href="UserProfile.php" class="login-btn-savi">
-                        <i class="fas fa-user-circle"></i> Profile
+                            <?php else: ?>
+                                <a href="UserProfile.php" class="login-btn-savi">
+                                    <i class="fas fa-user-circle"></i> Profile
+                                </a>
+                            <?php endif; ?>
+                            
+                            <a href="logout.php" class="logout-btn-savi">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+
+                    <?php else: ?>
+                        <a href="Login_index.php" class="login-btn-savi">
+                            <i class="fas fa-user"></i> Login
+                        </a>
+                    <?php endif; ?>
+                </li>
+            </ul>
+
+            <!-- User Actions for Desktop -->
+            <div class="user-actions-savi desktop-user-actions">
+                <?php if ($is_logged_in): ?>
+                    <?php if (!empty($username)): ?>
+                        <span class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</span>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        
+                        <?php if ($current_page == 'admin_dashboard.php'): ?>
+                            <a href="UserProfile.php" class="login-btn-savi">
+                                <i class="fas fa-user-circle"></i> Profile
+                            </a>
+                        <?php else: ?>
+                            <a href="admin_dashboard.php" class="login-btn-savi">
+                                <i class="fas fa-user-shield"></i> Dashboard
+                            </a>
+                        <?php endif; ?>
+
+                    <?php else: ?>
+                        <a href="UserProfile.php" class="login-btn-savi">
+                            <i class="fas fa-user-circle"></i> Profile
+                        </a>
+                    <?php endif; ?>
+
+                    <a href="logout.php" class="logout-btn-savi">
+                        <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 <?php else: ?>
-                    <a href="admin_dashboard.php" class="login-btn-savi">
-                        <i class="fas fa-user-shield"></i> Dashboard
+                    <a href="Login_index.php" class="login-btn-savi">
+                        <i class="fas fa-user"></i> Login
                     </a>
                 <?php endif; ?>
+            </div>
 
-            <?php else: ?>
-                <a href="UserProfile.php" class="login-btn-savi">
-                    <i class="fas fa-user-circle"></i> Profile
-                </a>
-            <?php endif; ?>
-            
-            <a href="logout.php" class="logout-btn-savi">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-        </div>
-
-    <?php else: ?>
-        <a href="Login_index.php" class="login-btn-savi">
-            <i class="fas fa-user"></i> Login
-        </a>
-    <?php endif; ?>
-</li>
-</ul> <!-- Assuming this closes your mobile nav list -->
-
-<!-- User Actions for Desktop -->
-<div class="user-actions-savi desktop-user-actions">
-    <?php if ($is_logged_in): ?>
-        <?php if (!empty($username)): ?>
-            <span class="welcome-text-savi">Welcome, <?php echo htmlspecialchars($username); ?>!</span>
-        <?php endif; ?>
-
-        <?php if ($_SESSION['role'] === 'admin'): ?>
-            
-            <?php // --- NEW: Check if the current page is the admin dashboard --- ?>
-            <?php if ($current_page == 'admin_dashboard.php'): ?>
-                <a href="UserProfile.php" class="login-btn-savi">
-                    <i class="fas fa-user-circle"></i> Profile
-                </a>
-            <?php else: ?>
-                <a href="admin_dashboard.php" class="login-btn-savi">
-                    <i class="fas fa-user-shield"></i> Dashboard
-                </a>
-            <?php endif; ?>
-
-        <?php else: ?>
-            <a href="UserProfile.php" class="login-btn-savi">
-                <i class="fas fa-user-circle"></i> Profile
-            </a>
-        <?php endif; ?>
-
-        <a href="logout.php" class="logout-btn-savi">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-    <?php else: ?>
-        <a href="Login_index.php" class="login-btn-savi">
-            <i class="fas fa-user"></i> Login
-        </a>
-    <?php endif; ?>
-</div>
-
-<!-- Mobile Menu Toggle -->
-<label for="mobile-menu-savi" class="mobile-toggle-savi">
-    <div class="hamburger-line-savi"></div>
-    <div class="hamburger-line-savi"></div>
-    <div class="hamburger-line-savi"></div>
-</label>
-</div> <!-- End of navbar-container -->
-</nav>
-
-    <style>
-        /* Mobile-specific user actions styling */
-        @media (max-width: 768px) {
-            .desktop-user-actions {
-                display: none;
-            }
-            
-            .mobile-user-actions {
-                display: block !important;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-user-actions {
-                display: none !important;
-            }
-        }
-    </style>
+            <!-- Mobile Menu Toggle -->
+            <label for="mobile-menu-savi" class="mobile-toggle-savi">
+                <div class="hamburger-line-savi"></div>
+                <div class="hamburger-line-savi"></div>
+                <div class="hamburger-line-savi"></div>
+            </label>
+        </div> <!-- End of navbar-container -->
+    </nav>
