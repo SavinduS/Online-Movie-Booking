@@ -2,7 +2,7 @@
 include 'auth_check.php';
 include 'database/db.php';
 
-// Check if user is admin
+
 checkAdminAuth();
 
 
